@@ -1,0 +1,30 @@
+Johnny sends a befriend_request to Tommy  
+Tommy accepts the befriend_request of Johnny  
+Johnny creates the campaign Tangerine Puppets  
+Joey creates the campaign Sniper  
+Johnny exits the campaign Tangerine Puppets  
+Tommy exits the campaign Tangerine Puppets  
+DeeDee sends a befriend_request to Johnny  
+DeeDee sends a befriend_request to Tommy  
+Tommy accepts the befriend_request of DeeDee  
+Johnny accepts the befriend_request of DeeDee  
+Johnny forms campaign Ramones  
+Johnny invites DeeDee to campaign Ramones
+DeeDee accepts the campaign_invitation to Ramones  
+Johnny invites Richie to campaign Ramones
+Richie declines the campaign_invitation to Ramones  
+Johnny invites Joey to campaign Ramones
+Joey exits the campaign Sniper  
+Joey accepts the campaign_invitation to Ramones  
+Johnny invites Tommy to campaign Ramones
+Tommy accepts the campaign_invitation to Ramones  
+Tommy sends a befriend_request to Joey  
+Joey accepts the befriend_request of Tommy  
+Tommy exits the campaign Ramones  
+Marky joins the campaign Ramones  
+Marky sends a befriend_request to Joey  
+Marky sends a befriend_request to Johnny  
+Marky sends a befriend_request to DeeDee  
+Joey accepts the befriend_request of Marky  
+Johnny accepts the befriend_request of Marky  
+DeeDee accepts the befriend_request of Marky  
