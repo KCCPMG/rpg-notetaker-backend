@@ -6,7 +6,11 @@ issueToken = (req, res, next) => {
   console.log("Issuing Token to: " + req.user.id);
   res.cookie('JWT', jwt.sign({
     auth: true, id: req.user.id
-  }, process.env.JWT_SECRET), {httpOnly: true})
+  }, process.env.JWT_SECRET), {
+    // httpOnly set to false ONLY FOR TESTING
+    // httpOnly: true
+    httpOnly: false
+  })
   next();
   
 }

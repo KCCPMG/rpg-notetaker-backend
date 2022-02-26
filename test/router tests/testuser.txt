@@ -1,0 +1,23 @@
+
+POST REQUEST http://localhost:3001/users/newUser Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+
+POST RESPONSE http://localhost:3001/users/newUser Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+{
+  "user": {
+    "name": "TestUser",
+    "email": "testUser@aol.com",
+    "password": "$2a$10$LoltkufPslGhMGCZdPREKus9Bqq7k28jNLrDw4OvNBgBmZd56tTD2",
+    "confirmed": false,
+    "createTime": "2022-02-26T06:23:30.792Z",
+    "characters": [],
+    "campaigns": [],
+    "friends": [],
+    "_id": "6219c7638d742b870cd5e4dc",
+    "__v": 0
+  }
+}
+
+POST REQUEST http://localhost:3001/users/confirmUser/6219c7638d742b870cd5e4dc Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+
+POST RESPONSE http://localhost:3001/users/confirmUser/6219c7638d742b870cd5e4dc Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+"User confirmed"

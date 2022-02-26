@@ -1,4 +1,4 @@
-Johnny sends a befriend_request to Tommy  
+Johnny sends a befriend_request to Tommy 
 Tommy accepts the befriend_request of Johnny  
 Johnny creates the campaign Tangerine Puppets  
 Joey creates the campaign Sniper  

@@ -5,11 +5,10 @@ const {ExtractJwt} = require('passport-jwt');
 const JwtStrategy = require('passport-jwt').Strategy;
 
 const User = require('../models/User.js');
-const dotenv = require('dotenv');
 
-dotenv.config({
-  path: './.env'
-})
+// dotenv config carries over from the file that calls this one
+// console.log(process.env.JWT_SECRET);
+
 
 passport.use('login', new LocalStrategy((email, password, done) => {
   User.findOne({email: email}, (err, user) => {

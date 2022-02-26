@@ -23,6 +23,7 @@ router.get('/:userid', checkToken, (req, res) => {
   res.write()
 
 
+
 })
 
 
@@ -83,7 +84,7 @@ altRouter.get('/:userid', (req, res, next) => {
 // set emitter
 initStreamRouter = (eEmit) => {
   emitter = eEmit; 
-  console.log(emitter);
+  // console.log(emitter);
   return altRouter;
 }
 

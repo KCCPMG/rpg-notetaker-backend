@@ -1,0 +1,50 @@
+handouts
+journalEntries
+index
+
+
+
+do I need to return more than just the one document? There may be times where I need to get campaigns, users, etc.
+
+add fullObjOpt as a second argument to all Controls methods, if true, return all associated documents
+
+if a message needs to find a thread and does not include the directRecipient, then notifying the recipient would require getting them earlier and returning it as well, so that the route handler can move things along properly
+
+the vast majority of these return a message
+
+everything that a user will need to have given to them will be a Document of some kind
+-Campaign
+-Character
+-Handout
+-IndexEntry
+-JournalEntry
+-Message
+-Thread
+-User ONLY when that User is them, never another. If other information is needed about a User, the User document will not be sent, only a limited profile
+
+Do I need to 
+
+
+befriendAccept - acceptMessage - {origMessage, origThread, befriendRequester, befriendAccepter, acceptMessage}
+
+befriendReject - rejectMessage - {origMessage, befriendRequester, befriendRejector, rejectMessage}
+
+befriendRequest - savedMessage - {}
+
+campaignInviteAccept
+campaignInviteReject
+campaignInvite
+editHandout
+endFriendship
+exitCampaign
+newCampaign
+newHandout
+newThread
+newUser - savedUser - {savedUser}
+promoteToDm
+removeFromCampaign
+roomInviteAccept
+roomInviteReject
+roomInvite
+stepDownDm
+textMessageTest

@@ -33,6 +33,59 @@ router.get('/getUser/:userId', checkToken, (req, res) => {
 })
 
 
+router.post('/newUser', async (req, res) => {
+  try {
+
+    // for testing
+    console.log("\nFrom user.js /newUser: req.body:\n", req.body);
+
+    let user = new User({
+      name: req.body.userObj.name,
+      email: req.body.userObj.email,
+      password: req.body.userObj.password,
+      confirmed: false
+    })
+
+    let [nameCheck, emailCheck, salt] = await Promise.all([
+      User.exists({name: user.name}),
+      User.exists({email: user.email}),
+      bcrypt.genSalt(SALT_ROUNDS)
+    ])
+
+    // need to encrypt password, save user
+    user.password = bcrypt.hashSync(user.password, salt);
+
+    await user.save();
+
+    let returnObj = {
+      response: {},
+      ntfObj: {}
+    }
+    
+    if (nameCheck && !emailCheck) {
+      returnObj.response = { errorMessage: ""};
+    } else if (!nameCheck && emailCheck) {
+      returnObj.response = { errorMessage: ""};
+    } else if (nameCheck && emailCheck) {
+      returnObj.response = { errorMessage: ""};
+    } else {
+      returnObj.response = { user }
+    }
+
+    res.send(returnObj.response);
+
+  } catch(e) {
+
+    console.log("\nWithin user.js /newUser: error\n", e);
+    res.send("Something went wrong, please try again later");
+  
+  }
+  
+
+})
+
+
+// defunct - see router.post('/newUser')
 router.post('/register', (req, res) => {
   console.log("register", req.body);
 
@@ -70,6 +123,46 @@ router.post('/register', (req, res) => {
     res.send("Something went wrong, please try again later.");
   })
 })
+
+
+router.post('/confirmUser/:userId', async (req, res) => {
+  console.log(`\nFrom users.js - router.post(/confirmUser/:userId): \nincoming post for ${req.params.userId}, (${typeof req.params.userId})`);
+  try {
+
+    User.findById(req.params.userId, (err, user) => {
+      if (err) throw err;
+      else if (!user) res.send("User not found");
+      else {
+        if (user.confirmed) {
+          res.send("User already confirmed")
+        } else if (user.email !== req.body.email) {
+          res.send("Incorrect email");
+        } else {
+          bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
+            if (err) throw err;
+            else if (isMatch) {
+
+              user.confirmed = true;
+              user.save((err) => {
+                if (err) throw err;
+                else res.send("User confirmed");
+              })
+              
+              
+            }
+            else res.send("Incorrect password");
+          })
+        }
+      } 
+    })
+  } catch(e) {
+    console.log(e);
+    res.send("Something went wrong");
+  }
+  
+
+})
+
 
 router.post('/login', (req, res) => {
   console.log('incoming login post');

@@ -9,11 +9,19 @@ const Campaign = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
+  createdOn: {
+    type: Date,
+    default: new Date(),
+    required: true
+  },
   description: {
     type: String,
     required: false
   },
   dm: {
+    type: [mongoose.Types.ObjectId]
+  },
+  handouts: {
     type: [mongoose.Types.ObjectId]
   },
   game: {
@@ -23,58 +31,31 @@ const Campaign = new mongoose.Schema({
   players: {
     type: [mongoose.Types.ObjectId]
   },
+  invitedPlayers: {
+    type: [mongoose.Types.ObjectId],
+    default: []
+  },
   journalEntries: {
-    type: [{
-      id: {
-        type: Number,
-        required: true,
-        default: 0
-      },
-      date: {
-        type: Date,
-        default: new Date()
-      },
-      text: {
-        type: String
-      }
-    }]
+    type: [mongoose.Types.ObjectId],
+    default: []
   },
   index: {
-    entries: [
-      {
-        term: {
-          type: String,
-          required: true
-        },
-        alternateTerms: {
-          type: [String],
-          required: true,
-          default: []
-        },
-        associatedTerms: {
-          type: [String],
-          required: true,
-          default: []
-        },
-        tags:  {
-          type: [String],
-          required: true,
-          default: []
-        },
-        definition: {
-          type: String,
-          required: true
-        },
-        tags: {
-          type: [String]
-        },
-        category: {
-          type: String,
-          enum: ["Character", "Location", "Organization", "Item", "Other"]
-        }
-      }
-    ]
+    type: [mongoose.Types.ObjectId],
+    default: []
+  },
+  threadId: {
+    type: mongoose.Types.ObjectId,
+    required: true
   }
 })
 
 module.exports = mongoose.model('Campaign', Campaign);
+
+
+// Test
+let model = mongoose.model('Campaign', Campaign);
+let testCampaign = new model({
+  name: "Test Campaign",
+})
+
+// console.log(testCampaign);
