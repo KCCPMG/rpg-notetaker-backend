@@ -33,7 +33,7 @@ var indexRouter = require('../../routes/index');
 var usersRouter = require('../../routes/users');
 var campaignsRouter = require('../../routes/campaigns');
 // var messagesRouter = require('./routes/messages');
-const initMessagesRouter = require('../../routes/messages');
+const initMessagesRouter = require('../../routes/messages')(eventEmitter);
 var initStreamRouter = require('../../routes/stream');
 
 
@@ -45,7 +45,8 @@ var app = express();
 
 app.use(cors({
   'origin': ['http://localhost:3000'],
-  'credentials': true
+  'credentials': true,
+  'exposedHeaders': ['set-cookie']
 }))
 
 // .env setup
@@ -73,7 +74,9 @@ app.use(passport.initialize());
 app.use('/users', usersRouter);
 app.use('/campaigns', campaignsRouter);
 // app.use('/messages', messagesRouter);
-app.use('/messages', initMessagesRouter(eventEmitter));
+// app.use('/messages', initMessagesRouter(eventEmitter));
+app.use('/messages', initMessagesRouter);
+
 app.use('/stream', initStreamRouter(eventEmitter));
 
 // basic test handling, in place of app.use('/', indexRouter)
@@ -199,6 +202,7 @@ const listenAndExecute = async (server, eSourceArr, cb) => {
 
   } catch(e) {
     console.log(e);
+    await shutdown(server, eSourceArr);
   }
 }
 
@@ -216,7 +220,20 @@ app.start = async (cb, eSourceArr) => {
   });
 }
 
-app.openServer = () => {
+app.openServer = async () => {
+
+  mongoose.connection.on('error', console.error.bind(console, "connection error: "))
+
+  // console.log(mongoose.connection.once, mongoose.connection.readyState);
+
+  let [connect] = await Promise.all([
+    // axios.get('http://localhost:3001/'),
+    mongoose.connect(dbstring, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+  ]);
+
   app.listen('3001', (e) => {
     console.log(e);
   });

@@ -1,23 +1,51 @@
 
-POST REQUEST http://localhost:3001/users/newUser Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+POST REQUEST http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
 
-POST RESPONSE http://localhost:3001/users/newUser Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+POST RESPONSE http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
 {
   "user": {
     "name": "TestUser",
     "email": "testUser@aol.com",
-    "password": "$2a$10$LoltkufPslGhMGCZdPREKus9Bqq7k28jNLrDw4OvNBgBmZd56tTD2",
     "confirmed": false,
-    "createTime": "2022-02-26T06:23:30.792Z",
+    "createTime": "2022-03-07T06:18:08.738Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "6219c7638d742b870cd5e4dc",
+    "_id": "6225a3a16b0aba886121a9fc",
     "__v": 0
   }
-}
+} 
+cookie: undefined 
 
-POST REQUEST http://localhost:3001/users/confirmUser/6219c7638d742b870cd5e4dc Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
+POST REQUEST http://localhost:3001/users/login Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
 
-POST RESPONSE http://localhost:3001/users/confirmUser/6219c7638d742b870cd5e4dc Fri Feb 25 2022 22:23:31 GMT-0800 (Pacific Standard Time)
-"User confirmed"
+POST RESPONSE http://localhost:3001/users/login Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+{
+  "user": {
+    "_id": "6225a3a16b0aba886121a9fc",
+    "name": "TestUser",
+    "email": "testUser@aol.com",
+    "confirmed": false,
+    "createTime": "2022-03-07T06:18:08.738Z",
+    "characters": [],
+    "campaigns": [],
+    "friends": [],
+    "__v": 0
+  },
+  "auth": true
+} 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMjVhM2ExNmIwYWJhODg2MTIxYTlmYyIsImlhdCI6MTY0NjYzMzg4OX0.JihjfX-_FFaN_FgHTKAyPN9eMX2CgxKnDdM2dPxeUrU; Path=/"] 
+
+POST REQUEST http://localhost:3001/messages/newThread Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+
+POST RESPONSE http://localhost:3001/messages/newThread Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+{
+  "participants": [
+    "6225a3a16b0aba886121a9fc",
+    "6225a3a16b0aba886121a9ff"
+  ],
+  "chatType": "CHAT",
+  "_id": "6225a3a16b0aba886121aa07",
+  "__v": 0
+} 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMjVhM2ExNmIwYWJhODg2MTIxYTlmYyIsImlhdCI6MTY0NjYzMzg4OX0.JihjfX-_FFaN_FgHTKAyPN9eMX2CgxKnDdM2dPxeUrU; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMjVhM2ExNmIwYWJhODg2MTIxYTlmYyIsImlhdCI6MTY0NjYzMzg4OX0.JihjfX-_FFaN_FgHTKAyPN9eMX2CgxKnDdM2dPxeUrU; Path=/"] 

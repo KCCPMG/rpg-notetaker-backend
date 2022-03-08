@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Campaign = require('../models/Campaign');
 const Message = require('../models/Message'); 
+const Controls = require('../models/Controls');
 const {issueToken, checkToken} = require('../config/authentication')
 var router = express.Router();
 
@@ -18,6 +19,8 @@ const CAMPAIGN_INVITE_ACCEPT = 'CAMPAIGN_INVITE_ACCEPT';
 const CAMPAIGN_INVITE_REJECT = 'CAMPAIGN_INVITE_REJECT'; 
 const EXIT_CAMPAIGN = 'EXIT_CAMPAIGN'; 
 const REMOVE_FROM_CAMPAIGN = 'REMOVE_FROM_CAMPAIGN';
+
+var eventEmitter;
 
 // Mongoose saves wrapped in Promises
 const userSave = ((userDoc) => {
@@ -113,6 +116,27 @@ router.post('/new', (req, res) => {
 })
 
 
+router.post('/newThread', checkToken, async (req, res) => {
+  console.log(eventEmitter);
+
+  try {
+    console.log("\nnewThread request incoming\n");
+    console.log(req.user._id);
+    console.log(req.body);
+
+    if (!req.body.threadObj.participants.includes(String(req.user._id))) {
+      console.log(req.body.thread.participants);
+      console.log(req.user._id);
+      throw("User not included in thread");
+    }
+    let thread = await Controls.newThread(req.body.threadObj, false);
+    res.send(thread);
+
+  } catch(e) {
+    console.log(e);
+    res.send("Something went wrong, please try again later")
+  }
+})
 
 
 // needs to make sure message is valid AND handle campaign/relationship editing
@@ -388,10 +412,14 @@ validateMessage = (req, message) => {
 //   })
 // }
 
-
+initRouter = (eEmit) => {
+  eventEmitter = eEmit;
+  return router;
+}
 
 
 // module.exports = router;
+module.exports = initRouter;
 
 
 // alternate version
@@ -400,6 +428,8 @@ altRouter.use(checkToken);
 
 
 const initMessagesRouter = (eEmit) => {
+
+  console.log("initiating messages router");
   
   altRouter.get('/', (req, res) => {
     console.log("\n\n\ngetting messages\n\n\n");
@@ -437,7 +467,18 @@ const initMessagesRouter = (eEmit) => {
     }
   })
 
+  altRouter.post('/newThread', checkToken, (req, res) => {
+    try {
+      console.log("wakka wakka wakka");
+      res.send("wakka wakka wakka");
+    } catch(e) {
+      console.log(e);
+      res.send("Sorry, something went wrong");
+    }
+  })
+
+  // console.log(altRouter);
   return altRouter;
 }
 
-module.exports = initMessagesRouter;
+// module.exports = initMessagesRouter;

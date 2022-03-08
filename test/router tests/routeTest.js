@@ -22,11 +22,16 @@ const getWrapper = async (handle, url, config) => {
  
 // function to wrap all POST API requests to be used to log requests and responses in MAIN_HANDLE_NAME, as well as in the text logs for individual users
 const postWrapper = async (handle, url, data, config) => {
+  console.log(handle);
   fs.appendFileSync(MAIN_HANDLE_NAME, `\n${handle} POST REQUEST ${url} ${new Date().toString()}\n`)
+  
   fs.appendFileSync(handle, `\nPOST REQUEST ${url} ${new Date().toString()}\n`)
+  
   let res = await axios.post(url, data, config);
-  fs.appendFileSync(MAIN_HANDLE_NAME, `\n${handle} POST RESPONSE ${url} ${new Date().toString()}\n${JSON.stringify(res.data, null, 2)}`)
-  fs.appendFileSync(handle, `\nPOST RESPONSE ${url} ${new Date().toString()}\n${JSON.stringify(res.data, null, 2)}\n`);
+  
+  fs.appendFileSync(MAIN_HANDLE_NAME, `\n${handle} POST RESPONSE ${url} ${new Date().toString()}\n${JSON.stringify(res.data, null, 2)} \ncookie: ${JSON.stringify(res.headers['set-cookie'])} \n`)
+  
+  fs.appendFileSync(handle, `\nPOST RESPONSE ${url} ${new Date().toString()}\n${JSON.stringify(res.data, null, 2)} \ncookie: ${JSON.stringify(res.headers['set-cookie'])} \n`);
   return res;
 }
 
@@ -35,7 +40,7 @@ const createUserAndLog = async (username, userObj) => {
   // open file named username
   let userHandle = fs.openSync(`${username}.txt`, "w");
 
-  let createUserRes = await postWrapper(userHandle, 'http://localhost:3001/users/newUser', {userObj}, {})
+  let createUserRes = await postWrapper(`${username}.txt`, 'http://localhost:3001/users/newUser', {userObj}, {})
 
   let user = createUserRes.data.user;
 
@@ -156,14 +161,52 @@ const confirmUserTest = async () => {
 
 const newThreadTest = async () => {
   
-  await createUserAndLog('testuser', {
-    userObj: {
+  // let testuser = await createUserAndLog('testuser', {
+  //   userObj: {
+  //     name: "TestUser",
+  //     email: "testUser@aol.com",
+  //     password: "abcdefg123!@#",
+  //   }
+  // })
+
+  let [testuser, testuser1] = await Promise.all([
+    createUserAndLog('testuser', { 
       name: "TestUser",
       email: "testUser@aol.com",
       password: "abcdefg123!@#",
-    }
+    }),
+    createUserAndLog('testuser1', {
+      name: "TestUser1",
+      email: "testUser1@aol.com",
+      password: "asdfgh3456#$%",
+    })
+  ]);
+
+  // need to log testuser in
+  let res = await postWrapper('testuser.txt', 'http://localhost:3001/users/login', {
+    email: testuser.email,
+    password: testuser.cleanPassword
   })
 
+  let loggedInTU = res.data.user;
+  loggedInTU.cleanPassword = testuser.cleanPassword;
+  loggedInTU.token = res.headers['set-cookie'].find(sc => sc.slice(0,4) === "JWT=");
+
+  console.log("routeTest line 190 sanity check");
+  console.log(loggedInTU)
+
+  let request = await (postWrapper('testuser.txt', 'http://localhost:3001/messages/newThread', { 
+    threadObj: {
+      participants: [testuser._id, testuser1._id],
+      chatType: "CHAT"
+    }
+  }, {
+    headers: {
+      Cookie: loggedInTU.token
+    }
+  }));
+
+  return request.data;
 
 }
 

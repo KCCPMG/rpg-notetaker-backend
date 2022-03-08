@@ -32,7 +32,7 @@ router.get('/getUser/:userId', checkToken, (req, res) => {
   })
 })
 
-
+// working
 router.post('/newUser', async (req, res) => {
   try {
 
@@ -69,7 +69,14 @@ router.post('/newUser', async (req, res) => {
     } else if (nameCheck && emailCheck) {
       returnObj.response = { errorMessage: ""};
     } else {
-      returnObj.response = { user }
+      // returnObj.response = { user }
+      // delete returnObj.response.user.password;
+      // console.log(returnObj.response.user);
+      returnObj.response = {user: {}}
+      Object.keys(user._doc).forEach(k => {
+        console.log(k, user[k])
+        if (k!=="password") returnObj.response.user[k] = user[k];
+      });
     }
 
     res.send(returnObj.response);
@@ -80,8 +87,6 @@ router.post('/newUser', async (req, res) => {
     res.send("Something went wrong, please try again later");
   
   }
-  
-
 })
 
 
@@ -193,17 +198,40 @@ router.post('/login', (req, res) => {
         } else if (isMatch) {
           req.user = user;
           
-          res.data = {user};
-          delete res.data.user.password;
-          
+          // let copiedUser = Object.assign({}, user);
+          // delete copiedUser.password;
+          // console.log(copiedUser);
+
+          // console.log("res.data", res.data);
+          res.data = {};
+          // console.log("res.data", res.data);
+          res.data.user = {};
+
+          // console.log("\n\nGo through keys\n\n");
+          Object.keys(user._doc).forEach(k => {
+            // console.log(k, user[k])
+            if (k!=="password") res.data.user[k] = user[k];
+          });
+
+          // console.log(res.data.user);
+
+          // res.data = {user};
+          // console.log(res.data);
+          // console.log(res.data.user.password);
+          // console.log(delete res.data.user.password);
+          // console.log(res.data.user.password);
+
           res.data.auth = true;
 
           issueToken(req, res, () => {
-            console.log(res.token);
+            // console.log("Headers:", res);
             res.send(res.data);
           })
         }
-        else res.send("Incorrect password");
+        else {
+          console.log(user, req.body.password);
+          res.send("Incorrect password");
+        }
       })
     }
   })
