@@ -1,50 +1,32 @@
 
-testuser.txt POST REQUEST http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+testuser.txt POST REQUEST http://localhost:3001/users/newUser Mon Mar 14 2022 13:31:02 GMT-0700 (Pacific Daylight Time)
 
-testuser1.txt POST REQUEST http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
-
-testuser.txt POST RESPONSE http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+testuser.txt POST RESPONSE http://localhost:3001/users/newUser Mon Mar 14 2022 13:31:02 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-07T06:18:08.738Z",
+    "createTime": "2022-03-14T20:31:02.464Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "6225a3a16b0aba886121a9fc",
+    "_id": "622fa606d343c62f7356966c",
     "__v": 0
   }
 } 
 cookie: undefined 
 
-testuser1.txt POST RESPONSE http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+TestUser.txt POST REQUEST http://localhost:3001/users/login Mon Mar 14 2022 13:31:02 GMT-0700 (Pacific Daylight Time)
+
+TestUser.txt POST RESPONSE http://localhost:3001/users/login Mon Mar 14 2022 13:31:03 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
-    "name": "TestUser1",
-    "email": "testUser1@aol.com",
-    "confirmed": false,
-    "createTime": "2022-03-07T06:18:08.738Z",
-    "characters": [],
-    "campaigns": [],
-    "friends": [],
-    "_id": "6225a3a16b0aba886121a9ff",
-    "__v": 0
-  }
-} 
-cookie: undefined 
-
-testuser.txt POST REQUEST http://localhost:3001/users/login Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
-
-testuser.txt POST RESPONSE http://localhost:3001/users/login Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
-{
-  "user": {
-    "_id": "6225a3a16b0aba886121a9fc",
+    "_id": "622fa606d343c62f7356966c",
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-07T06:18:08.738Z",
+    "createTime": "2022-03-14T20:31:02.464Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
@@ -52,18 +34,7 @@ testuser.txt POST RESPONSE http://localhost:3001/users/login Sun Mar 06 2022 22:
   },
   "auth": true
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMjVhM2ExNmIwYWJhODg2MTIxYTlmYyIsImlhdCI6MTY0NjYzMzg4OX0.JihjfX-_FFaN_FgHTKAyPN9eMX2CgxKnDdM2dPxeUrU; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMmZhNjA2ZDM0M2M2MmY3MzU2OTY2YyIsImlhdCI6MTY0NzI4OTg2M30.nLjmQHIxGveD9AKCc0HSClpivrai3ijUJfqw5o-2HX4; Path=/"] 
 
-testuser.txt POST REQUEST http://localhost:3001/messages/newThread Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
-
-testuser.txt POST RESPONSE http://localhost:3001/messages/newThread Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
-{
-  "participants": [
-    "6225a3a16b0aba886121a9fc",
-    "6225a3a16b0aba886121a9ff"
-  ],
-  "chatType": "CHAT",
-  "_id": "6225a3a16b0aba886121aa07",
-  "__v": 0
-} 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMjVhM2ExNmIwYWJhODg2MTIxYTlmYyIsImlhdCI6MTY0NjYzMzg4OX0.JihjfX-_FFaN_FgHTKAyPN9eMX2CgxKnDdM2dPxeUrU; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMjVhM2ExNmIwYWJhODg2MTIxYTlmYyIsImlhdCI6MTY0NjYzMzg4OX0.JihjfX-_FFaN_FgHTKAyPN9eMX2CgxKnDdM2dPxeUrU; Path=/"] 
+TestUser EVENT SOURCE Mon Mar 14 2022 13:31:03 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1647289863129","origin":"http://localhost:3001"}

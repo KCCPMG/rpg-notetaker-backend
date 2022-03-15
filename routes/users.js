@@ -37,7 +37,7 @@ router.post('/newUser', async (req, res) => {
   try {
 
     // for testing
-    console.log("\nFrom user.js /newUser: req.body:\n", req.body);
+    // console.log("\nFrom user.js /newUser: req.body:\n", req.body);
 
     let user = new User({
       name: req.body.userObj.name,
@@ -74,7 +74,7 @@ router.post('/newUser', async (req, res) => {
       // console.log(returnObj.response.user);
       returnObj.response = {user: {}}
       Object.keys(user._doc).forEach(k => {
-        console.log(k, user[k])
+        // console.log(k, user[k])
         if (k!=="password") returnObj.response.user[k] = user[k];
       });
     }
@@ -164,15 +164,13 @@ router.post('/confirmUser/:userId', async (req, res) => {
     console.log(e);
     res.send("Something went wrong");
   }
-  
-
 })
 
 
 router.post('/login', (req, res) => {
-  console.log('incoming login post');
-  console.log(req.body.email);
-  console.log(req.body);
+  console.log(`\nFrom users.js - router.post(/login/:userId):\nreq.body.email: ${req.body.email}\nreq.body:`, req.body)
+  // console.log(req.body.email);
+  // console.log(req.body);
   User.findOne({email: req.body.email}, (err, user) => {
     console.log(user);
     if (err) res.send("Something went wrong");

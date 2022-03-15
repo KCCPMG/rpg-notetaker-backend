@@ -1,17 +1,17 @@
 
-POST REQUEST http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+POST REQUEST http://localhost:3001/users/newUser Sun Mar 13 2022 14:52:36 GMT-0700 (Pacific Daylight Time)
 
-POST RESPONSE http://localhost:3001/users/newUser Sun Mar 06 2022 22:18:09 GMT-0800 (Pacific Standard Time)
+POST RESPONSE http://localhost:3001/users/newUser Sun Mar 13 2022 14:52:37 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser1",
     "email": "testUser1@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-07T06:18:08.738Z",
+    "createTime": "2022-03-13T21:52:36.685Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "6225a3a16b0aba886121a9ff",
+    "_id": "622e67a4f7bd85dccb98a468",
     "__v": 0
   }
 } 

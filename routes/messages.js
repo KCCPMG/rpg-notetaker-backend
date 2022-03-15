@@ -117,12 +117,11 @@ router.post('/new', (req, res) => {
 
 
 router.post('/newThread', checkToken, async (req, res) => {
-  console.log(eventEmitter);
+  console.log(`\nFrom routes/messages.js - router.post('/newThread'), EventEmitter:\n`, eventEmitter);
 
   try {
-    console.log("\nnewThread request incoming\n");
-    console.log(req.user._id);
-    console.log(req.body);
+    console.log(`\nFrom routes/messages.js - router.post('/newThread')\nRequest user id: ${req.user._id}\nRequest body: ${JSON.stringify(req.body)}`);
+    
 
     if (!req.body.threadObj.participants.includes(String(req.user._id))) {
       console.log(req.body.thread.participants);

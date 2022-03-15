@@ -22,7 +22,7 @@ const getWrapper = async (handle, url, config) => {
  
 // function to wrap all POST API requests to be used to log requests and responses in MAIN_HANDLE_NAME, as well as in the text logs for individual users
 const postWrapper = async (handle, url, data, config) => {
-  console.log(handle);
+  // console.log(handle);
   fs.appendFileSync(MAIN_HANDLE_NAME, `\n${handle} POST REQUEST ${url} ${new Date().toString()}\n`)
   
   fs.appendFileSync(handle, `\nPOST REQUEST ${url} ${new Date().toString()}\n`)
@@ -64,39 +64,68 @@ const confirmUser = async (user) => {
       // config
     )
   } catch(e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
 
-// not finished
+// working, may need tweaks to handle eStream events
 const loginUser = async (user) => {
   // 
-  await postWrapper(
-    // handle,
-    // url,
-    // data,
-    // config
-  )
+  let response = await postWrapper(`${user.name}.txt`, 'http://localhost:3001/users/login', {
+    email: user.email, 
+    password: user.cleanPassword
+  }, /*config*/)
 
+
+  let loggedInTU = response.data;
+  // loggedInTU.token = JSON.stringify(response.headers['set-cookie'])
+  loggedInTU.token = (response.headers['set-cookie'])
+  console.log(`\nFrom test/router tests/routeTest.js - loginUser, loggedInTU.token:`, loggedInTU.token);
 
   // subscribe to eventSource
-  var eSource = new EventSource(`http://localhost:3001/stream/${user._id}`, {
-    withCredentials: true
+  var eSource = await new EventSource(`http://localhost:3001/stream/${user._id}`, {
+    headers: {
+      Cookie: loggedInTU.token
+    }
   });
 
-  console.log("\nFrom routeTest.js - createUserAndLog, eTaskSource:\n", eSource);
+  console.log("\nFrom routeTest.js - loginUser, sanity check");
+  console.log("\nFrom routeTest.js - loginUser, eTaskSource:\n", eSource);
 
   E_SOURCE_ARR.push(eSource);
 
-  eSource.close();
-
-  console.log("\nFrom routeTest.js - createUserAndLog, eTaskSource:\n", eSource);
+  // eSource.close();
 
   // on eventSource event, log
   // 
 
-  return user;
+  // return user;
+  return await Promise.race([
+    new Promise((res,rej) => { 
+      eSource.onmessage = (mes) => {
+        console.log("\nFrom routeTest.js - loginUser, eSource message", mes)
+        
+        fs.appendFileSync(MAIN_HANDLE_NAME, `\n${user.name} EVENT SOURCE ${new Date().toString()}\n${JSON.stringify(mes)}\n`)
+        
+
+        fs.appendFileSync(`${user.name}.txt`, `\nEVENT SOURCE ${new Date().toString()}\n${JSON.stringify(mes)}\n`)
+
+        res(mes);
+      }
+    }),
+    new Promise((res,rej) => {
+      eSource.onerror = (err) => {
+        console.log("\nFrom routeTest.js - loginUser, eSource error", err)
+
+        fs.appendFileSync(MAIN_HANDLE_NAME, `\n${user.name} EVENT SOURCE ERROR ${new Date().toString()}\n${JSON.stringify(err)}\n`)
+
+        fs.appendFileSync(`${user.name}.txt`, `\nEVENT SOURCE ERROR ${new Date().toString()}\n${JSON.stringify(err)}\n`)
+
+        res(err);
+      }
+    })
+  ])
 }
 
 
@@ -154,10 +183,19 @@ const confirmUserTest = async () => {
     return resp.data;
 
   } catch(e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
+const loginUserTest = async () => {
+  let tu = await createUserAndLog('testuser', {
+    name: "TestUser",
+    email: "testUser@aol.com",
+    password: "abcdefg123!@#",
+  });
+
+  return await loginUser(tu)
+}
 
 const newThreadTest = async () => {
   
@@ -192,8 +230,7 @@ const newThreadTest = async () => {
   loggedInTU.cleanPassword = testuser.cleanPassword;
   loggedInTU.token = res.headers['set-cookie'].find(sc => sc.slice(0,4) === "JWT=");
 
-  console.log("routeTest line 190 sanity check");
-  console.log(loggedInTU)
+  console.log(`\nFrom tests/router tests/routeTest.js: newThreadTest, logged in testUser - ${JSON.stringify(loggedInTU)}`)
 
   let request = await (postWrapper('testuser.txt', 'http://localhost:3001/messages/newThread', { 
     threadObj: {
@@ -211,7 +248,22 @@ const newThreadTest = async () => {
 }
 
 const befriendRequestTest = async () => {
-  // stub
+  let tu = await createUserAndLog('testuser', {
+    name: "TestUser",
+    email: "testUser@aol.com",
+    password: "abcdefg123!@#",
+  });
+
+  let tu1 = await createUserAndLog('testuser', {
+    name: "TestUser1",
+    email: "testUser1@aol.com",
+    password: "abcdefg123!@#",
+  });
+
+  await Promise.all([
+    loginUser(tu),
+    loginUser(tu1)
+  ])
 }
 
 const getMessagesTest = async () => {
@@ -315,6 +367,10 @@ const TESTS  = [
   {
     flag: "-confirmUser",
     func: confirmUserTest
+  },
+  {
+    flag: "-loginUser",
+    func: loginUserTest
   },
   {
     flag: "-newThread",
@@ -424,7 +480,7 @@ const getTest = async () => {
 
     if (ALL_FLAGS.includes(flags[0])) {
       let test = TESTS.find(test => test.flag === flags[0]);
-      console.log(`Running Test: ${test.flag}`)
+      console.log(`\nFrom test/router tests/routeTest.js - getTest, Running Test: ${test.flag}`)
 
       return test["func"]();
     } else {

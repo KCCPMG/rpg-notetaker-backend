@@ -3,7 +3,7 @@ const passport = require('passport');
 require ('./passport');
 
 issueToken = (req, res, next) => {
-  console.log("Issuing Token to: " + req.user.id);
+  console.log("\nFrom config/authentication.js - issueToken\nIssuing Token to: " + req.user.id);
   res.cookie('JWT', jwt.sign({
     auth: true, id: req.user.id
   }, process.env.JWT_SECRET), {
@@ -17,7 +17,7 @@ issueToken = (req, res, next) => {
 
 // Sets res.user to user, issues new token
 checkToken = (req, res, next) => {
-  console.log('checking token');
+  console.log(`\nFrom config/authentication.js - checkToken, checking token`);
   res.data = {};
   passport.authenticate('jwt', (err, user, info) => {
     if (err) {

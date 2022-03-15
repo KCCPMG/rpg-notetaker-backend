@@ -77,9 +77,10 @@ const userSave = ((userDoc) => {
 
 
 // private helper method 
-/*
-ntfObj argument is expected to be an empty object that is already part of the return object, essentially just an address to be populated with data
-*/
+
+// ntfObj argument is expected to be an empty object that is already part of the return object, essentially just an address to be populated with data
+// format is {userId: doc, userId: doc}
+
 const ntfObjAssign = (ntfObj, userIds, doc) => {
   // if user not in ntfObj, create key
   for (let userId of userIds) {

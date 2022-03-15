@@ -6,6 +6,7 @@ Instead of running a unique script for each test, the goal here is to cut down o
 
 "-newUser",
 "-confirmUser",
+"-loginUser",
 "-newThread",
 "-befriendRequest",
 "-getMessages",

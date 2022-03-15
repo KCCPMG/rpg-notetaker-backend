@@ -201,7 +201,7 @@ const listenAndExecute = async (server, eSourceArr, cb) => {
     return cbResult;
 
   } catch(e) {
-    console.log(e);
+    console.error(e);
     await shutdown(server, eSourceArr);
   }
 }
@@ -212,7 +212,7 @@ app.start = async (cb, eSourceArr) => {
     try {
       let finish = await listenAndExecute(server, eSourceArr, cb);
       // console.trace(finish);
-      console.log("\nFrom appTest.js - app.start:", finish);
+      console.log("\nFrom test/router tests/appTest.js - app.start, returned from callback", finish);
       // console.log(server.listening);
     } catch(e) {
       console.log(e);

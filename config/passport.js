@@ -33,13 +33,18 @@ passport.use('jwt', new JwtStrategy(
     // jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('JWT'),
     // jwtFromRequest: req ? req.cookies['JWT'] || null : null,
     jwtFromRequest: ExtractJwt.fromExtractors([(req) => {
-      if (req) return req.cookies['JWT'] || null;
-      else return null;
+      if (req) {
+        console.log("\nFrom config/passport.js - passport.use('jwt'), req.cookies:", req.cookies);
+        return req.cookies['JWT'] || null;
+      } else return null;
     }]),
     secretOrKey: process.env.JWT_SECRET
   }, (jwt_payload, done) => {
-    console.log(jwt_payload);
-    console.log({id: jwt_payload.id});
+    // console.log(req.cookies);
+    // console.log(req.cookies['JWT']);
+    console.log(`\nFrom config/passport.js - passport.use('jwt') \njwt_payload: ${JSON.stringify(jwt_payload)}\nid: ${JSON.stringify({id: jwt_payload.id})}`);
+    // console.log(jwt_payload);
+    // console.log({id: jwt_payload.id});
     User.findById(jwt_payload.id, (err, user) => {
       if (err) done(err);
       else if (!user) {
