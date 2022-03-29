@@ -6,7 +6,8 @@ const User = require('../models/User');
 const Campaign = require('../models/Campaign');
 const Message = require('../models/Message'); 
 const Controls = require('../models/Controls');
-const {issueToken, checkToken} = require('../config/authentication')
+const {issueToken, checkToken} = require('../config/authentication');
+const { handleReturnObj } = require('./utilities');
 var router = express.Router();
 
 const BEFRIEND_REQUEST = 'BEFRIEND_REQUEST'; 
@@ -20,7 +21,7 @@ const CAMPAIGN_INVITE_REJECT = 'CAMPAIGN_INVITE_REJECT';
 const EXIT_CAMPAIGN = 'EXIT_CAMPAIGN'; 
 const REMOVE_FROM_CAMPAIGN = 'REMOVE_FROM_CAMPAIGN';
 
-var eventEmitter;
+var EMITTER;
 
 // Mongoose saves wrapped in Promises
 const userSave = ((userDoc) => {
@@ -78,46 +79,101 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/new', (req, res) => {
+// router.post('/new', (req, res) => {
 
-  console.log(req.body);
-  let message = new Message(req.body.message);
-  console.log(message);
-  if (req.user.id !== String(message.sender)) {
-    console.log(req.user.id);
-    console.log(message.sender);
-    res.send("Not Authorized");
-  } else {
-    validateMessage(req, message)
-    .then(()=>{messageSave(message)})
-    .then((success) => {res.send("Message saved")})
-    .catch((err) => {
-      console.log(err);
-      res.send(err)
-    })
+//   console.log(req.body);
+//   let message = new Message(req.body.message);
+//   console.log(message);
+//   if (req.user.id !== String(message.sender)) {
+//     console.log(req.user.id);
+//     console.log(message.sender);
+//     res.send("Not Authorized");
+//   } else {
+//     validateMessage(req, message)
+//     .then(()=>{messageSave(message)})
+//     .then((success) => {res.send("Message saved")})
+//     .catch((err) => {
+//       console.log(err);
+//       res.send(err)
+//     })
 
 
-    // User.findById(message.recipient, (err, recipient) => {
-    //   if (err) {
-    //     res.send("Something went wrong");
-    //   } else if (!recipient) {
-    //     res.send("Recipient not found")
-    //   } else {
-    //     message.save((err) => {
-    //       if (err) {
-    //         res.send("Something went wrong")
-    //       } else {
-    //         res.send("Message saved");
-    //       }
-    //     })
+//     // User.findById(message.recipient, (err, recipient) => {
+//     //   if (err) {
+//     //     res.send("Something went wrong");
+//     //   } else if (!recipient) {
+//     //     res.send("Recipient not found")
+//     //   } else {
+//     //     message.save((err) => {
+//     //       if (err) {
+//     //         res.send("Something went wrong")
+//     //       } else {
+//     //         res.send("Message saved");
+//     //       }
+//     //     })
+//     //   }
+//     // }) 
+//   }
+// })
+
+
+router.post('/new', checkToken, async(req, res) => {
+  try {
+
+    console.log(`\nFrom messages.js - router.post('/new')\nreq.body.message: ${JSON.stringify(req.body.message)}\n`)
+    
+    if (String(req.user._id) !== req.body.message.sender) {
+      console.log(`\nFrom router.post('/new') \nreq.user._id: ${String(req.user._id)} ${typeof(String(req.user._id))}\nreq.body.message.sender: ${req.body.message.sender} ${typeof((req.body.message.sender))}\n`)
+      throw new Error("Invalid message: Message sender is not user who sent request");
+    } 
+
+    let returnObj;
+    switch (req.body.message.messageType){
+      case BEFRIEND_REQUEST:
+        returnObj = await Controls.befriendRequest(req.body.message, true);
+    }
+
+    // handle retObj
+    // (emitter) => {
+    //   res.send(returnObj.response);
+    //   for (let id of Object.keys(returnObj.ntfObj)) {
+    //     emitter.emit(id, returnObj.ntfObj[id]);
     //   }
-    // }) 
+    // }(EMITTER);
+    
+    handleReturnObj(res, EMITTER, returnObj);
+
+  } catch(e) {
+    console.error(e);
+    res.send("Something went wrong, please try again later")
   }
 })
 
 
+
+validateMessage = async(req) => {
+  try {
+    console.log(`From routes/messages.js - validateMessage, req.user._id: ${req.user._id}`);
+
+    // make sure sender is req.user._id
+
+    // make sure recipient is real
+
+    // if there's a last message, find last message, make sure that it exists, and that it does not already have a response
+
+    // if there's a campaign, find campaign, make sure it exists
+
+    // 
+
+  } catch(e) {
+    throw e;
+  }
+
+}
+
+
 router.post('/newThread', checkToken, async (req, res) => {
-  console.log(`\nFrom routes/messages.js - router.post('/newThread'), EventEmitter:\n`, eventEmitter);
+  console.log(`\nFrom routes/messages.js - router.post('/newThread'), EventEmitter:\n`, EMITTER);
 
   try {
     console.log(`\nFrom routes/messages.js - router.post('/newThread')\nRequest user id: ${req.user._id}\nRequest body: ${JSON.stringify(req.body)}`);
@@ -412,7 +468,7 @@ validateMessage = (req, message) => {
 // }
 
 initRouter = (eEmit) => {
-  eventEmitter = eEmit;
+  EMITTER = eEmit;
   return router;
 }
 

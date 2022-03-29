@@ -1,0 +1,12 @@
+Event #1
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1648524632925","origin":"http://localhost:3001"}
+
+Event #2
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1648524632937","origin":"http://localhost:3001"}
+
+Event #3
+{"type":"message","data":"{\"messages\":[{\"sender\":\"62427d58281dba63a14c7522\",\"threadIds\":[\"62427d59281dba63a14c7530\"],\"sendTime\":\"2022-03-29T03:30:31.818Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"62427d58281dba63a14c7522\"],\"_id\":\"62427d59281dba63a14c7535\",\"__v\":0}]}","lastEventId":"1648524633085, ","origin":"http://localhost:3001"}
+
+Event #4
+{"type":"message","data":"{\"messages\":[{\"sender\":\"62427d58281dba63a14c7522\",\"threadIds\":[\"62427d59281dba63a14c7530\"],\"sendTime\":\"2022-03-29T03:30:31.818Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"62427d58281dba63a14c7522\"],\"_id\":\"62427d59281dba63a14c7535\",\"__v\":0}]}","lastEventId":"1648524633088, ","origin":"http://localhost:3001"}
+

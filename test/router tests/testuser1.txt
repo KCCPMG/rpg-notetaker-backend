@@ -1,18 +1,43 @@
 
-POST REQUEST http://localhost:3001/users/newUser Sun Mar 13 2022 14:52:36 GMT-0700 (Pacific Daylight Time)
+POST REQUEST http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
 
-POST RESPONSE http://localhost:3001/users/newUser Sun Mar 13 2022 14:52:37 GMT-0700 (Pacific Daylight Time)
+POST RESPONSE http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser1",
     "email": "testUser1@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-13T21:52:36.685Z",
+    "createTime": "2022-03-29T03:30:31.823Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "622e67a4f7bd85dccb98a468",
+    "_id": "62427d58281dba63a14c7525",
     "__v": 0
   }
 } 
 cookie: undefined 
+
+POST REQUEST http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+
+POST RESPONSE http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+{
+  "user": {
+    "_id": "62427d58281dba63a14c7525",
+    "name": "TestUser1",
+    "email": "testUser1@aol.com",
+    "confirmed": false,
+    "createTime": "2022-03-29T03:30:31.823Z",
+    "characters": [],
+    "campaigns": [],
+    "friends": [],
+    "__v": 0
+  },
+  "auth": true
+} 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyNSIsImlhdCI6MTY0ODUyNDYzMn0.7xLFG7njlorx-xrnfu9ECWzZgd3htN42aZ74ANotavM; Path=/"] 
+
+EVENT SOURCE Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1648524632937","origin":"http://localhost:3001"}
+
+EVENT SOURCE Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"messages\":[{\"sender\":\"62427d58281dba63a14c7522\",\"threadIds\":[\"62427d59281dba63a14c7530\"],\"sendTime\":\"2022-03-29T03:30:31.818Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"62427d58281dba63a14c7522\"],\"_id\":\"62427d59281dba63a14c7535\",\"__v\":0}]}","lastEventId":"1648524633088, ","origin":"http://localhost:3001"}

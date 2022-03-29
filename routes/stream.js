@@ -129,8 +129,14 @@ router.get('/:userid',
         console.log("Correct User: ", req.params.userid);
         res.write(`event: message\nid: ${new Date().valueOf()}\ndata: You are connected to the event stream\n\n`);
 
+        EMITTER.on("TEST", () => {
+          console.log("\n\nTEST EMISSION COMING THROUGH TO STREAM.JS\n\n")
+        });
+
         EMITTER.on(req.params.userid, (doc) => {
-          res.write(`event:\nid: ${new Date()}, \ndata:${doc}`);
+          console.log(`\nFrom stream.js - router.get('/userid')`,
+          `\nevent coming for ${req.params.userid}\n`)
+          res.write(`event: message\nid: ${new Date().valueOf()}, \ndata: ${JSON.stringify(doc)}\n\n`);
         })
       }
     } catch (e) {
@@ -143,5 +149,6 @@ router.get('/:userid',
 
 module.exports = (eEmit) => {
   EMITTER = eEmit;
+  
   return router;
 }

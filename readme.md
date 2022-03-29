@@ -8,7 +8,7 @@
 
 ###### Summary:
 
-These are all of the models for all of the database objects in the RPG Notetaker. That includes Users, Campaigns, Messages, etc., and may expand over time as 
+These are all of the models for all of the database objects in the RPG Notetaker. That includes Users, Campaigns, Messages, etc., and may expand over time as this app further develops.
 
 
 ### Campaign.js

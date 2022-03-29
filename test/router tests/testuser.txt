@@ -1,32 +1,32 @@
 
-POST REQUEST http://localhost:3001/users/newUser Mon Mar 14 2022 13:31:02 GMT-0700 (Pacific Daylight Time)
+POST REQUEST http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
 
-POST RESPONSE http://localhost:3001/users/newUser Mon Mar 14 2022 13:31:02 GMT-0700 (Pacific Daylight Time)
+POST RESPONSE http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-14T20:31:02.464Z",
+    "createTime": "2022-03-29T03:30:31.823Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "622fa606d343c62f7356966c",
+    "_id": "62427d58281dba63a14c7522",
     "__v": 0
   }
 } 
 cookie: undefined 
 
-POST REQUEST http://localhost:3001/users/login Mon Mar 14 2022 13:31:02 GMT-0700 (Pacific Daylight Time)
+POST REQUEST http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
 
-POST RESPONSE http://localhost:3001/users/login Mon Mar 14 2022 13:31:03 GMT-0700 (Pacific Daylight Time)
+POST RESPONSE http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
-    "_id": "622fa606d343c62f7356966c",
+    "_id": "62427d58281dba63a14c7522",
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-14T20:31:02.464Z",
+    "createTime": "2022-03-29T03:30:31.823Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
@@ -34,7 +34,43 @@ POST RESPONSE http://localhost:3001/users/login Mon Mar 14 2022 13:31:03 GMT-070
   },
   "auth": true
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyMmZhNjA2ZDM0M2M2MmY3MzU2OTY2YyIsImlhdCI6MTY0NzI4OTg2M30.nLjmQHIxGveD9AKCc0HSClpivrai3ijUJfqw5o-2HX4; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzMn0.fH5a8ZhZn-m62KlyminZJW0dBzx0cX-J0QrCSz35_oU; Path=/"] 
 
-EVENT SOURCE Mon Mar 14 2022 13:31:03 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"You are connected to the event stream","lastEventId":"1647289863129","origin":"http://localhost:3001"}
+EVENT SOURCE Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1648524632925","origin":"http://localhost:3001"}
+
+POST REQUEST http://localhost:3001/messages/newThread Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+
+POST RESPONSE http://localhost:3001/messages/newThread Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+{
+  "participants": [
+    "62427d58281dba63a14c7522",
+    "62427d58281dba63a14c7525"
+  ],
+  "chatType": "CHAT",
+  "_id": "62427d59281dba63a14c7530",
+  "__v": 0
+} 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/"] 
+
+POST REQUEST http://localhost:3001/messages/new Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+
+POST RESPONSE http://localhost:3001/messages/new Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+{
+  "sender": "62427d58281dba63a14c7522",
+  "threadIds": [
+    "62427d59281dba63a14c7530"
+  ],
+  "sendTime": "2022-03-29T03:30:31.818Z",
+  "messageType": "BEFRIEND_REQUEST",
+  "text": "Let's be friends!",
+  "readBy": [
+    "62427d58281dba63a14c7522"
+  ],
+  "_id": "62427d59281dba63a14c7535",
+  "__v": 0
+} 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/"] 
+
+EVENT SOURCE Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"messages\":[{\"sender\":\"62427d58281dba63a14c7522\",\"threadIds\":[\"62427d59281dba63a14c7530\"],\"sendTime\":\"2022-03-29T03:30:31.818Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"62427d58281dba63a14c7522\"],\"_id\":\"62427d59281dba63a14c7535\",\"__v\":0}]}","lastEventId":"1648524633085, ","origin":"http://localhost:3001"}
