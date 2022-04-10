@@ -82,28 +82,46 @@ const userSave = ((userDoc) => {
 // format is {userId: doc, userId: doc}
 
 const ntfObjAssign = (ntfObj, userIds, doc) => {
-  // if user not in ntfObj, create key
-  for (let userId of userIds) {
-    if (!ntfObj[userId]) ntfObj[userId] = {};
-  }
-
-  if (doc.constructor.modelName === "Message") {
+  
+  try { 
+    // if user not in ntfObj, create key
     for (let userId of userIds) {
-      if (!ntfObj[userId].messages) ntfObj[userId].messages = [];
-      ntfObj[userId].messages.push(doc);
+      if (!ntfObj[userId]) ntfObj[userId] = {};
     }
-    return ntfObj;
-  } else {
-    let doctype = doc.constructor.modelName;
-    let subkey = doctype.charAt(0).toLowerCase() + doctype.slice(1);
-    
-    for (let userId of userIds) {
-      ntfObj[userId][subkey] = doc;
-    }
+    console.log("empty users for ntfObj:", ntfObj)
 
-    return ntfObj;
+    if (doc.constructor.modelName === "Message") {
+      console.log("\nadding message to ntfObj")
+      for (let userId of userIds) {
+        if (!ntfObj[userId].messages) ntfObj[userId].messages = [];
+        ntfObj[userId].messages.push(doc);
+      }
+      return ntfObj;
+    } 
+    // make user doc safe by removing password
+    else if (doc.constructor.modelName === "User") {
+      console.log("\nadding user to ntfObj")
+      let safeUser = (new User(doc).set("password", null));
+
+      for (let userId of userIds) {
+        ntfObj[userId]["user"] = safeUser;
+      }
+      
+      return ntfObj;
+    } 
+    else {
+      let doctype = doc.constructor.modelName;
+      let subkey = doctype.charAt(0).toLowerCase() + doctype.slice(1);
+      
+      for (let userId of userIds) {
+        ntfObj[userId][subkey] = doc;
+      }
+
+      return ntfObj;
+    }
+  } catch(e) {
+    throw(e);
   }
-
   
 }
 
@@ -414,13 +432,26 @@ module.exports.befriendAccept = async(befriendAcceptObj, ntfObjBool) => {
     if (ntfObjBool) {
       let returnObj = {
         response: acceptMessage,
+        
         ntfObj: {}
       };
     
+      
+
       // acceptMessage, befriendRequester, befriendAccepter
       ntfObjAssign(returnObj.ntfObj, origThread.participants, acceptMessage);
       ntfObjAssign(returnObj.ntfObj, [befriendRequester._id], befriendRequester);
       ntfObjAssign(returnObj.ntfObj, [befriendAccepter._id], befriendAccepter);
+
+
+      // let safeBefriendRequester = (new User(befriendRequester).set('password', null));
+      // let safeBefriendAccepter = (new User(befriendAccepter).set('password', null));;
+      // ntfObjAssign(returnObj.ntfObj, [befriendRequester._id], safeBefriendRequester);
+      // ntfObjAssign(returnObj.ntfObj, [befriendAccepter._id], safeBefriendAccepter);
+
+      // console.log("\nFrom Controls.js - befriendAccept, returnObj:", returnObj, "\n");
+
+      
 
       return returnObj;
 
@@ -1156,7 +1187,7 @@ module.exports.endFriendship = async(endFriendshipObj, ntfObjBool) => {
 
     // get unfriended, defriender
     let [unfriended, defriender] = await Promise.all([
-      User.findById(thread.participants.filter(u => u!==endFriendshipObj.sender)[0]).exec(),
+      User.findById(thread.participants.filter(u => String(u)!==String(endFriendshipObj.sender))[0]).exec(),
       User.findById(endFriendshipObj.sender).exec(),
     ])
 
@@ -1179,7 +1210,7 @@ module.exports.endFriendship = async(endFriendshipObj, ntfObjBool) => {
       unfriended.save(),
       defriender.save(),
       endMessage.save(),
-    ])
+    ]).catch((e) => { throw(e) }); 
 
     // return endMessage
     if (ntfObjBool) {

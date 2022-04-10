@@ -63,20 +63,34 @@ const notifyUsers = (eventEmitter, recipients) => {
 router.use(checkToken);
 
 // gets all messages sent and received
-router.get('/', (req, res) => {
-  Message.find({$or:
-    [
+// router.get('/', (req, res) => {
+//   Message.find({$or:
+//     [
+//       {"sender": req.user.id},
+//       {"recipient": req.user.id},
+//     ]
+//   }, (err, messages) => {
+//     if (err) {
+//       console.log(err);
+//       res.send("Something went wrong");
+//     } else {
+//       res.send({messages: messages})
+//     }
+//   })
+// })
+
+// gets all messages sent and received
+router.get('/', async (req, res) => {
+  try {
+    let messages = await Message.find({$or: [
       {"sender": req.user.id},
-      {"recipient": req.user.id},
-    ]
-  }, (err, messages) => {
-    if (err) {
-      console.log(err);
-      res.send("Something went wrong");
-    } else {
-      res.send({messages: messages})
-    }
-  })
+      {"recipient": req.user.id}
+    ]});
+    res.send(messages);
+  } catch(e) {
+    console.log(e);
+    res.send('Something went wrong');
+  }
 })
 
 // router.post('/new', (req, res) => {
@@ -130,7 +144,24 @@ router.post('/new', checkToken, async(req, res) => {
     let returnObj;
     switch (req.body.message.messageType){
       case BEFRIEND_REQUEST:
+        console.log("Befriend Request");
         returnObj = await Controls.befriendRequest(req.body.message, true);
+        break;
+      case BEFRIEND_ACCEPT: 
+        console.log("Befriend Accept");
+        // console.log(req.body.message.threadIds);
+        returnObj = await Controls.befriendAccept(req.body.message, true);
+        // console.log({returnObj});
+        break;
+      case BEFRIEND_REJECT:
+        console.log("Befriend Reject");
+        returnObj = await Controls.befriendReject(req.body.message, true);
+        break;
+      case END_FRIENDSHIP:
+        console.log("End Friendship");
+        returnObj = await Controls.endFriendship(req.body.message, true);
+        console.log("returnObj\n", returnObj);
+        break;
     }
 
     // handle retObj

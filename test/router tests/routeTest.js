@@ -5,55 +5,57 @@ const EventSource = require('EventSource');
 const events = require('events');
 const EventEmitter = new events();
 
+const util = require('util');
+
 const MAIN_HANDLE_NAME = "routerTest log.txt";
 let mainHandle = fs.openSync(MAIN_HANDLE_NAME, 'w');
 const E_SOURCE_ARR = [];
 
+const Controls = require('../../models/Controls.js')
 
 var esCount = 0;
 fs.openSync('events log.txt', 'w');
 
+
 // call this on all eSources 
-const esMeter = async (mesOrErr) => {
+const esMeter = async (mesOrErr, name) => {
   esCount++;
-  fs.appendFileSync('events log.txt', `Event #${esCount}\n${JSON.stringify(mesOrErr)}\n\n`);
+
+  let copy = Object.assign({}, mesOrErr)
+
+  try {
+    copy.data = JSON.parse(copy.data);
+  } catch(e) {
+    // do nothing
+  }
+
+  let deepPrinted = JSON.stringify(copy, null, 2);
+
+  fs.appendFileSync('events log.txt', `Event # ${esCount}`);
+  fs.appendFileSync('events log.txt', '\n');
+  
+  fs.appendFileSync('events log.txt', name) 
+  fs.appendFileSync('events log.txt', '\n');
+  
+  fs.appendFileSync('events log.txt', deepPrinted) 
+  fs.appendFileSync('events log.txt', '\n');
+
+  // try {
+  //   let data = JSON.parse(mesOrErr.data);
+  //   fs.appendFileSync('events log.txt', "data expanded: ");
+  //   fs.appendFileSync('events log.txt', JSON.stringify(data, null, 2)); 
+  //   fs.appendFileSync('events log.txt', '\n');
+  // } catch(e) {
+  //   // do nothing
+  // }
+
+  fs.appendFileSync('events log.txt', '\n\n');
+
   EventEmitter.emit(`Event #${esCount}`);
 }
 
+
 // helper function to either wait for all req'd event streams or stop after certain time
-const SPIKE_eventAwait = async (seconds, eventNo) => {
-  let timePromiseFunc = () => {
-    return new Promise((res) => {
-      setTimeout(()=>{ 
-        console.log(`\nFrom eventAwait, hitting timeout after ${seconds} seconds.`)
-        res();
-      }, 1000*seconds)
-    });
-  } 
-
-  let eventPromiseFunc = () => {
-    return new Promise((res) => {
-      EventEmitter.on(`Event #${eventNo}`, () => {
-        res();
-      });
-    })
-  }
-
-  if (!eventNo) {
-    await timePromiseFunc();
-    return;
-  } else {
-    
-    let resolvedPromise = await Promise.race([
-      eventPromiseFunc(),
-      timePromiseFunc()
-    ])
-    console.log({resolvedPromise});
-    return;
-  }
-  // return;
-}
-
 const eventAwait = async (seconds, eventNo) => {
   return await new Promise((res, rej) => {
     let timeout = setTimeout(() => {
@@ -71,13 +73,17 @@ const eventAwait = async (seconds, eventNo) => {
 
 // function to wrap all GET API requests to be used to log requests and responses in MAIN_HANDLE_NAME, as well as in the text logs for individual users
 const getWrapper = async (handle, url, config) => {
-  fs.write(MAIN_HANDLE_NAME, `\n${handle} GET REQUEST ${url} ${new Date().toString()}\n`)
-  fs.write(handle, `\nGET REQUEST ${url} ${new Date().toString()}\n`)
+  
+  fs.appendFileSync(MAIN_HANDLE_NAME, `\n${handle} GET REQUEST ${url} ${new Date().toString()}\n`)
+  
+  fs.appendFileSync(handle, `\nGET REQUEST ${url} ${new Date().toString()}\n`)
+  
   let res = await axios.get(url, config);
-  fs.write(MAIN_HANDLE_NAME, `\n${handle} GET RESPONSE ${url} ${new Date().toString()}
-  \n${JSON.stringify(res.data)}`)
-  fs.write(handle, `\nGET RESPONSE ${url} ${new Date().toString()}
-  \n${JSON.stringify(res.data)}`);
+  
+  fs.appendFileSync(MAIN_HANDLE_NAME, `\n${handle} GET RESPONSE ${url} ${new Date().toString()}
+  \n${JSON.stringify(res.data, null, 2)} \ncookie: ${JSON.stringify(res.headers['set-cookie'])} \n`)
+  
+  fs.appendFileSync(handle, `\nGET RESPONSE ${url} ${new Date().toString()}\n${JSON.stringify(res.data, null, 2)} \ncookie: ${JSON.stringify(res.headers['set-cookie'])} \n`);
   return res;
 }
  
@@ -130,9 +136,9 @@ const confirmUser = async (user) => {
 }
 
 
-// working, may need tweaks to handle eStream events
+// working
 const loginUser = async (user) => {
-  // 
+
   try {  
     let response = await postWrapper(`${user.name}.txt`, 'http://localhost:3001/users/login', {
       email: user.email, 
@@ -141,7 +147,7 @@ const loginUser = async (user) => {
 
 
     let loggedInTU = response.data.user;
-    // loggedInTU.token = JSON.stringify(response.headers['set-cookie'])
+
     loggedInTU.token = (response.headers['set-cookie'])
     console.log(`\nFrom test/router tests/routeTest.js - loginUser, loggedInTU.token:`, loggedInTU.token);
 
@@ -157,17 +163,14 @@ const loginUser = async (user) => {
 
     E_SOURCE_ARR.push(eSource);
 
-    // eSource.close();
-
-    // on eventSource event, log
-    // 
-
+    // establish eSource listeners
     await Promise.race([
       new Promise((res,rej) => { 
         eSource.onmessage = (mes) => {
-          console.log("\nFrom routeTest.js - loginUser, eSource message", mes)
+          console.log("\nFrom routeTest.js - loginUser, eSource message", mes, typeof(mes))
+
+          esMeter(mes, user.name);
           
-          esMeter(mes);
 
           fs.appendFileSync(MAIN_HANDLE_NAME, `\n${user.name} EVENT SOURCE ${new Date().toString()}\n${JSON.stringify(mes)}\n`)
           
@@ -181,7 +184,7 @@ const loginUser = async (user) => {
         eSource.onerror = (err) => {
           console.log("\nFrom routeTest.js - loginUser, eSource error", err);
 
-          esMeter(err);
+          esMeter(err, user.name);
 
           fs.appendFileSync(MAIN_HANDLE_NAME, `\n${user.name} EVENT SOURCE ERROR ${new Date().toString()}\n${JSON.stringify(err)}\n`)
 
@@ -266,14 +269,6 @@ const loginUserTest = async () => {
 }
 
 const newThreadTest = async () => {
-  
-  // let testuser = await createUserAndLog('testuser', {
-  //   userObj: {
-  //     name: "TestUser",
-  //     email: "testUser@aol.com",
-  //     password: "abcdefg123!@#",
-  //   }
-  // })
 
   let [testuser, testuser1] = await Promise.all([
     createUserAndLog('testuser', { 
@@ -362,8 +357,7 @@ const befriendRequestTest = async () => {
     });
 
     // await message
-    await eventAwait(5, 4);
-    // console.log("I'm sick of waiting");
+    await eventAwait(5, 6);
 
     return bfReqMessage.data;
 
@@ -373,19 +367,296 @@ const befriendRequestTest = async () => {
 }
 
 const getMessagesTest = async () => {
-  // stub
+  try {
+    let [testuser, testuser1] = await Promise.all([
+      createUserAndLog('testuser', { 
+        name: "TestUser",
+        email: "testUser@aol.com",
+        password: "abcdefg123!@#",
+      }),
+      createUserAndLog('testuser1', {
+        name: "TestUser1",
+        email: "testUser1@aol.com",
+        password: "asdfgh3456#$%",
+      })
+    ]);
+
+    [testuser, testuser1] = await Promise.all([
+      loginUser(testuser),
+      loginUser(testuser1)
+    ]);
+
+    let threadRequest = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/newThread', { 
+      threadObj: {
+        participants: [testuser._id, testuser1._id],
+        chatType: "CHAT"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    let thread = threadRequest.data;
+
+    let bfReqMessage = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser._id,
+        threadIds: [thread._id],
+        messageType: 'BEFRIEND_REQUEST',
+        text: "Let's be friends!"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    let [testuserMessageReq, testuser1MessageReq] = await Promise.all([
+      getWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/', {
+        headers: {
+          Cookie: testuser.token
+        }
+      }),
+      getWrapper(`${testuser1.name}.txt`, 'http://localhost:3001/messages/', {
+        headers: {
+          Cookie: testuser1.token
+        }
+      })
+    ])
+
+    return testuserMessageReq.data;
+
+  } catch(e) {
+    throw e;
+  }
 }
 
 const befriendAcceptTest = async () => {
-  // stub
+  try {
+    let [testuser, testuser1] = await Promise.all([
+      createUserAndLog('testuser', { 
+        name: "TestUser",
+        email: "testUser@aol.com",
+        password: "abcdefg123!@#",
+      }),
+      createUserAndLog('testuser1', {
+        name: "TestUser1",
+        email: "testUser1@aol.com",
+        password: "asdfgh3456#$%",
+      })
+    ]);
+
+    [testuser, testuser1] = await Promise.all([
+      loginUser(testuser),
+      loginUser(testuser1)
+    ]);
+
+    let threadRequest = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/newThread', { 
+      threadObj: {
+        participants: [testuser._id, testuser1._id],
+        chatType: "CHAT"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    let thread = threadRequest.data;
+
+    let bfReqMessage = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser._id,
+        threadIds: [thread._id],
+        messageType: 'BEFRIEND_REQUEST',
+        text: "Let's be friends!"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    // accept friend request
+    let bfAccMessage = await postWrapper(`${testuser1.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser1._id,
+        origMessage: bfReqMessage.data._id,
+        
+        threadIds: bfReqMessage.data.threadIds,
+        text: "Friends we shall be",
+        messageType: Controls.BEFRIEND_ACCEPT,
+      }
+    }, {
+      headers: {
+        Cookie: testuser1.token
+      }
+    })
+
+    await eventAwait(5,6)
+    // placeholder return
+    return bfAccMessage.data;
+    // confirm that users are friends
+
+  } catch(e) {
+    throw e;
+  }
 }
 
 const befriendRejectTest = async () => {
-  // stub
+  try {
+    let [testuser, testuser1] = await Promise.all([
+      createUserAndLog('testuser', { 
+        name: "TestUser",
+        email: "testUser@aol.com",
+        password: "abcdefg123!@#",
+      }),
+      createUserAndLog('testuser1', {
+        name: "TestUser1",
+        email: "testUser1@aol.com",
+        password: "asdfgh3456#$%",
+      })
+    ]);
+
+    [testuser, testuser1] = await Promise.all([
+      loginUser(testuser),
+      loginUser(testuser1)
+    ]);
+
+    let threadRequest = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/newThread', { 
+      threadObj: {
+        participants: [testuser._id, testuser1._id],
+        chatType: "CHAT"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    let thread = threadRequest.data;
+
+    let bfReqMessage = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser._id,
+        threadIds: [thread._id],
+        messageType: 'BEFRIEND_REQUEST',
+        text: "Let's be friends!"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    // reject friend request
+    let bfRejMessage = await postWrapper(`${testuser1.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser1._id,
+        origMessage: bfReqMessage.data._id,  
+        threadIds: bfReqMessage.data.threadIds,
+        text: "I'll never join you",
+        messageType: Controls.BEFRIEND_REJECT,
+      }
+    }, {
+      headers: {
+        Cookie: testuser1.token
+      }
+    })
+
+    await eventAwait(5,6)
+    // placeholder return
+    return bfRejMessage.data;
+    // confirm that users are friends
+
+  } catch(e) {
+    throw e;
+  }
 }
 
 const endFriendshipTest = async () => {
-  // stub
+  try {
+    let [testuser, testuser1] = await Promise.all([
+      createUserAndLog('testuser', { 
+        name: "TestUser",
+        email: "testUser@aol.com",
+        password: "abcdefg123!@#",
+      }),
+      createUserAndLog('testuser1', {
+        name: "TestUser1",
+        email: "testUser1@aol.com",
+        password: "asdfgh3456#$%",
+      })
+    ]);
+
+    [testuser, testuser1] = await Promise.all([
+      loginUser(testuser),
+      loginUser(testuser1)
+    ]);
+
+    let threadRequest = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/newThread', { 
+      threadObj: {
+        participants: [testuser._id, testuser1._id],
+        chatType: "CHAT"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    let thread = threadRequest.data;
+
+    let bfReqMessage = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser._id,
+        threadIds: [thread._id],
+        messageType: 'BEFRIEND_REQUEST',
+        text: "Let's be friends!"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    // accept friend request
+    let bfAccMessage = await postWrapper(`${testuser1.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser1._id,
+        origMessage: bfReqMessage.data._id,
+        threadIds: bfReqMessage.data.threadIds,
+        text: "Friends we shall be",
+        messageType: Controls.BEFRIEND_ACCEPT,
+      }
+    }, {
+      headers: {
+        Cookie: testuser1.token
+      }
+    })
+
+    let endFriendshipMes = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser._id,
+        threadIds: [bfReqMessage.data.threadIds],
+        text: "Lol psych FU",
+        messageType: Controls.END_FRIENDSHIP
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    })
+
+    await eventAwait(5,8)
+    // placeholder return
+    return endFriendshipMes.data;
+    // confirm that users are friends
+
+  } catch(e) {
+    throw e;
+  }
 }
 
 const textMessageTest = async () => {

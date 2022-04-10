@@ -1,52 +1,52 @@
 
-TestUser.txt POST REQUEST http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:14 GMT-0700 (Pacific Daylight Time)
 
-TestUser1.txt POST REQUEST http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST REQUEST http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:14 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-29T03:30:31.823Z",
+    "createTime": "2022-04-10T17:40:14.097Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "62427d58281dba63a14c7522",
+    "_id": "6253167e72ba57af26cff2cc",
     "__v": 0
   }
 } 
 cookie: undefined 
 
-TestUser1.txt POST RESPONSE http://localhost:3001/users/newUser Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST RESPONSE http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser1",
     "email": "testUser1@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-29T03:30:31.823Z",
+    "createTime": "2022-04-10T17:40:14.097Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "62427d58281dba63a14c7525",
+    "_id": "6253167e72ba57af26cff2cf",
     "__v": 0
   }
 } 
 cookie: undefined 
 
-TestUser.txt POST REQUEST http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 
-TestUser1.txt POST REQUEST http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST REQUEST http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
-    "_id": "62427d58281dba63a14c7522",
+    "_id": "6253167e72ba57af26cff2cc",
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-29T03:30:31.823Z",
+    "createTime": "2022-04-10T17:40:14.097Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
@@ -54,16 +54,16 @@ TestUser.txt POST RESPONSE http://localhost:3001/users/login Mon Mar 28 2022 20:
   },
   "auth": true
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzMn0.fH5a8ZhZn-m62KlyminZJW0dBzx0cX-J0QrCSz35_oU; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/"] 
 
-TestUser1.txt POST RESPONSE http://localhost:3001/users/login Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST RESPONSE http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
-    "_id": "62427d58281dba63a14c7525",
+    "_id": "6253167e72ba57af26cff2cf",
     "name": "TestUser1",
     "email": "testUser1@aol.com",
     "confirmed": false,
-    "createTime": "2022-03-29T03:30:31.823Z",
+    "createTime": "2022-04-10T17:40:14.097Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
@@ -71,49 +71,74 @@ TestUser1.txt POST RESPONSE http://localhost:3001/users/login Mon Mar 28 2022 20
   },
   "auth": true
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyNSIsImlhdCI6MTY0ODUyNDYzMn0.7xLFG7njlorx-xrnfu9ECWzZgd3htN42aZ74ANotavM; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjZiIsImlhdCI6MTY0OTYxMjQxNX0.itkrENWl5i2hQWWBtPvfrvvaM-H54RCZzikHAZbDCDI; Path=/"] 
 
-TestUser EVENT SOURCE Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"You are connected to the event stream","lastEventId":"1648524632925","origin":"http://localhost:3001"}
+TestUser EVENT SOURCE Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1649612415607","origin":"http://localhost:3001"}
 
-TestUser1 EVENT SOURCE Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"You are connected to the event stream","lastEventId":"1648524632937","origin":"http://localhost:3001"}
+TestUser1 EVENT SOURCE Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1649612415621","origin":"http://localhost:3001"}
 
-TestUser.txt POST REQUEST http://localhost:3001/messages/newThread Mon Mar 28 2022 20:30:32 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/messages/newThread Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/messages/newThread Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/messages/newThread Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 {
   "participants": [
-    "62427d58281dba63a14c7522",
-    "62427d58281dba63a14c7525"
+    "6253167e72ba57af26cff2cc",
+    "6253167e72ba57af26cff2cf"
   ],
   "chatType": "CHAT",
-  "_id": "62427d59281dba63a14c7530",
+  "_id": "6253167f72ba57af26cff2da",
   "__v": 0
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/"] 
 
-TestUser.txt POST REQUEST http://localhost:3001/messages/new Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/messages/new Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/messages/new Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/messages/new Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 {
-  "sender": "62427d58281dba63a14c7522",
+  "sender": "6253167e72ba57af26cff2cc",
   "threadIds": [
-    "62427d59281dba63a14c7530"
+    "6253167f72ba57af26cff2da"
   ],
-  "sendTime": "2022-03-29T03:30:31.818Z",
+  "sendTime": "2022-04-10T17:40:14.092Z",
   "messageType": "BEFRIEND_REQUEST",
   "text": "Let's be friends!",
   "readBy": [
-    "62427d58281dba63a14c7522"
+    "6253167e72ba57af26cff2cc"
   ],
-  "_id": "62427d59281dba63a14c7535",
+  "_id": "6253167f72ba57af26cff2df",
   "__v": 0
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNDI3ZDU4MjgxZGJhNjNhMTRjNzUyMiIsImlhdCI6MTY0ODUyNDYzM30.0ipjiPEp0p_ye8dQYghix2RHonJ2P_wuHyGdyaGgC4A; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/"] 
 
-TestUser EVENT SOURCE Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"{\"messages\":[{\"sender\":\"62427d58281dba63a14c7522\",\"threadIds\":[\"62427d59281dba63a14c7530\"],\"sendTime\":\"2022-03-29T03:30:31.818Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"62427d58281dba63a14c7522\"],\"_id\":\"62427d59281dba63a14c7535\",\"__v\":0}]}","lastEventId":"1648524633085, ","origin":"http://localhost:3001"}
+TestUser1.txt POST REQUEST http://localhost:3001/messages/new Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
 
-TestUser1 EVENT SOURCE Mon Mar 28 2022 20:30:33 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"{\"messages\":[{\"sender\":\"62427d58281dba63a14c7522\",\"threadIds\":[\"62427d59281dba63a14c7530\"],\"sendTime\":\"2022-03-29T03:30:31.818Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"62427d58281dba63a14c7522\"],\"_id\":\"62427d59281dba63a14c7535\",\"__v\":0}]}","lastEventId":"1648524633088, ","origin":"http://localhost:3001"}
+TestUser EVENT SOURCE Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"messages\":[{\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"_id\":\"6253167f72ba57af26cff2df\",\"__v\":0}]}","lastEventId":"1649612415968, ","origin":"http://localhost:3001"}
+
+TestUser1 EVENT SOURCE Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"messages\":[{\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"_id\":\"6253167f72ba57af26cff2df\",\"__v\":0}]}","lastEventId":"1649612415970, ","origin":"http://localhost:3001"}
+
+TestUser1.txt POST RESPONSE http://localhost:3001/messages/new Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
+{
+  "sender": "6253167e72ba57af26cff2cf",
+  "threadIds": [
+    "6253167f72ba57af26cff2da"
+  ],
+  "sendTime": "2022-04-10T17:40:14.092Z",
+  "messageType": "BEFRIEND_REJECT",
+  "text": "I'll never join you",
+  "readBy": [
+    "6253167e72ba57af26cff2cf"
+  ],
+  "_id": "6253168072ba57af26cff2e6",
+  "__v": 0
+} 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjZiIsImlhdCI6MTY0OTYxMjQxNn0.Ef10S7n2CYhT-lKvESsMZ7_MaA6actw3RvNJ6IQqmYU; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjZiIsImlhdCI6MTY0OTYxMjQxNn0.Ef10S7n2CYhT-lKvESsMZ7_MaA6actw3RvNJ6IQqmYU; Path=/"] 
+
+TestUser EVENT SOURCE Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"messages\":[{\"response\":{\"messageId\":\"6253168072ba57af26cff2e6\",\"messageType\":\"BEFRIEND_REJECT\"},\"_id\":\"6253167f72ba57af26cff2df\",\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"__v\":0},{\"sender\":\"6253167e72ba57af26cff2cf\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REJECT\",\"text\":\"I'll never join you\",\"readBy\":[\"6253167e72ba57af26cff2cf\"],\"_id\":\"6253168072ba57af26cff2e6\",\"__v\":0}]}","lastEventId":"1649612416207, ","origin":"http://localhost:3001"}
+
+TestUser1 EVENT SOURCE Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"messages\":[{\"response\":{\"messageId\":\"6253168072ba57af26cff2e6\",\"messageType\":\"BEFRIEND_REJECT\"},\"_id\":\"6253167f72ba57af26cff2df\",\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"__v\":0},{\"sender\":\"6253167e72ba57af26cff2cf\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REJECT\",\"text\":\"I'll never join you\",\"readBy\":[\"6253167e72ba57af26cff2cf\"],\"_id\":\"6253168072ba57af26cff2e6\",\"__v\":0}]}","lastEventId":"1649612416209, ","origin":"http://localhost:3001"}
