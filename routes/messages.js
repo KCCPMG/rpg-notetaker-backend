@@ -162,15 +162,11 @@ router.post('/new', checkToken, async(req, res) => {
         returnObj = await Controls.endFriendship(req.body.message, true);
         console.log("returnObj\n", returnObj);
         break;
+      case TEXT_ONLY:
+        console.log("Text Only");
+        returnObj = await Controls.textOnly(req.body.message, true);
+        break;
     }
-
-    // handle retObj
-    // (emitter) => {
-    //   res.send(returnObj.response);
-    //   for (let id of Object.keys(returnObj.ntfObj)) {
-    //     emitter.emit(id, returnObj.ntfObj[id]);
-    //   }
-    // }(EMITTER);
     
     handleReturnObj(res, EMITTER, returnObj);
 

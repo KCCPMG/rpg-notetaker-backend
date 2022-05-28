@@ -3,7 +3,7 @@ TestUser
 {
   "type": "message",
   "data": "You are connected to the event stream",
-  "lastEventId": "1649612415607",
+  "lastEventId": "1653769582194",
   "origin": "http://localhost:3001"
 }
 
@@ -13,7 +13,7 @@ TestUser1
 {
   "type": "message",
   "data": "You are connected to the event stream",
-  "lastEventId": "1649612415621",
+  "lastEventId": "1653769582206",
   "origin": "http://localhost:3001"
 }
 
@@ -23,141 +23,50 @@ TestUser
 {
   "type": "message",
   "data": {
-    "messages": [
-      {
-        "sender": "6253167e72ba57af26cff2cc",
-        "threadIds": [
-          "6253167f72ba57af26cff2da"
-        ],
-        "sendTime": "2022-04-10T17:40:14.092Z",
-        "messageType": "BEFRIEND_REQUEST",
-        "text": "Let's be friends!",
-        "readBy": [
-          "6253167e72ba57af26cff2cc"
-        ],
-        "_id": "6253167f72ba57af26cff2df",
-        "__v": 0
-      }
-    ]
+    "thread": {
+      "participants": [
+        "6292856d488cc875f5656c66"
+      ],
+      "chatType": "CAMPAIGN",
+      "name": "The View From The Lighthouse",
+      "_id": "6292856e488cc875f5656c75",
+      "campaignId": "6292856e488cc875f5656c76",
+      "__v": 0
+    },
+    "campaign": {
+      "name": "The View From The Lighthouse",
+      "createdBy": "6292856d488cc875f5656c66",
+      "createdOn": "2022-05-28T20:26:20.873Z",
+      "description": "",
+      "dm": [
+        "6292856d488cc875f5656c66"
+      ],
+      "handouts": [],
+      "game": "Mouths of Thayer",
+      "players": [],
+      "invitedPlayers": [],
+      "journalEntries": [],
+      "index": [],
+      "threadId": "6292856e488cc875f5656c75",
+      "_id": "6292856e488cc875f5656c76",
+      "__v": 0
+    },
+    "user": {
+      "name": "TestUser",
+      "email": "testUser@aol.com",
+      "password": null,
+      "confirmed": false,
+      "createTime": "2022-05-28T20:26:20.923Z",
+      "characters": [],
+      "campaigns": [
+        "6292856e488cc875f5656c76"
+      ],
+      "friends": [],
+      "_id": "6292856d488cc875f5656c66",
+      "__v": 1
+    }
   },
-  "lastEventId": "1649612415968, ",
-  "origin": "http://localhost:3001"
-}
-
-
-Event # 4
-TestUser1
-{
-  "type": "message",
-  "data": {
-    "messages": [
-      {
-        "sender": "6253167e72ba57af26cff2cc",
-        "threadIds": [
-          "6253167f72ba57af26cff2da"
-        ],
-        "sendTime": "2022-04-10T17:40:14.092Z",
-        "messageType": "BEFRIEND_REQUEST",
-        "text": "Let's be friends!",
-        "readBy": [
-          "6253167e72ba57af26cff2cc"
-        ],
-        "_id": "6253167f72ba57af26cff2df",
-        "__v": 0
-      }
-    ]
-  },
-  "lastEventId": "1649612415970, ",
-  "origin": "http://localhost:3001"
-}
-
-
-Event # 5
-TestUser
-{
-  "type": "message",
-  "data": {
-    "messages": [
-      {
-        "response": {
-          "messageId": "6253168072ba57af26cff2e6",
-          "messageType": "BEFRIEND_REJECT"
-        },
-        "_id": "6253167f72ba57af26cff2df",
-        "sender": "6253167e72ba57af26cff2cc",
-        "threadIds": [
-          "6253167f72ba57af26cff2da"
-        ],
-        "sendTime": "2022-04-10T17:40:14.092Z",
-        "messageType": "BEFRIEND_REQUEST",
-        "text": "Let's be friends!",
-        "readBy": [
-          "6253167e72ba57af26cff2cc"
-        ],
-        "__v": 0
-      },
-      {
-        "sender": "6253167e72ba57af26cff2cf",
-        "threadIds": [
-          "6253167f72ba57af26cff2da"
-        ],
-        "sendTime": "2022-04-10T17:40:14.092Z",
-        "messageType": "BEFRIEND_REJECT",
-        "text": "I'll never join you",
-        "readBy": [
-          "6253167e72ba57af26cff2cf"
-        ],
-        "_id": "6253168072ba57af26cff2e6",
-        "__v": 0
-      }
-    ]
-  },
-  "lastEventId": "1649612416207, ",
-  "origin": "http://localhost:3001"
-}
-
-
-Event # 6
-TestUser1
-{
-  "type": "message",
-  "data": {
-    "messages": [
-      {
-        "response": {
-          "messageId": "6253168072ba57af26cff2e6",
-          "messageType": "BEFRIEND_REJECT"
-        },
-        "_id": "6253167f72ba57af26cff2df",
-        "sender": "6253167e72ba57af26cff2cc",
-        "threadIds": [
-          "6253167f72ba57af26cff2da"
-        ],
-        "sendTime": "2022-04-10T17:40:14.092Z",
-        "messageType": "BEFRIEND_REQUEST",
-        "text": "Let's be friends!",
-        "readBy": [
-          "6253167e72ba57af26cff2cc"
-        ],
-        "__v": 0
-      },
-      {
-        "sender": "6253167e72ba57af26cff2cf",
-        "threadIds": [
-          "6253167f72ba57af26cff2da"
-        ],
-        "sendTime": "2022-04-10T17:40:14.092Z",
-        "messageType": "BEFRIEND_REJECT",
-        "text": "I'll never join you",
-        "readBy": [
-          "6253167e72ba57af26cff2cf"
-        ],
-        "_id": "6253168072ba57af26cff2e6",
-        "__v": 0
-      }
-    ]
-  },
-  "lastEventId": "1649612416209, ",
+  "lastEventId": "1653769582366, ",
   "origin": "http://localhost:3001"
 }
 

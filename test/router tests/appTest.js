@@ -31,10 +31,12 @@ const axios = require('axios');
 
 var indexRouter = require('../../routes/index');
 var usersRouter = require('../../routes/users');
-var campaignsRouter = require('../../routes/campaigns');
+// var campaignsRouter = require('../../routes/campaigns');
 // var messagesRouter = require('./routes/messages');
 const initMessagesRouter = require('../../routes/messages')(eventEmitter);
+const initCampaignsRouter = require('../../routes/campaigns')(eventEmitter);
 var initStreamRouter = require('../../routes/stream');
+
 
 
 // streamRouter.setEmitter(eventEmitter);
@@ -72,10 +74,11 @@ app.use(passport.initialize());
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/campaigns', campaignsRouter);
+// app.use('/campaigns', campaignsRouter);
 // app.use('/messages', messagesRouter);
 // app.use('/messages', initMessagesRouter(eventEmitter));
 app.use('/messages', initMessagesRouter);
+app.use('/campaigns', initCampaignsRouter);
 
 app.use('/stream', initStreamRouter(eventEmitter));
 

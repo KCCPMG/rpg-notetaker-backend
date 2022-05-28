@@ -7,6 +7,10 @@ const Campaign = require('../models/Campaign');
 const {issueToken, checkToken} = require('../config/authentication')
 var router = express.Router();
 
+const Controls = require('../models/Controls');
+const { handleReturnObj } = require('./utilities');
+
+var EMITTER;
 
 router.use(checkToken);
 
@@ -107,6 +111,29 @@ router.post('/new_campaign', checkToken, (req, res) => {
 
 })
 
+
+router.post('/new', checkToken, async (req, res) => {
+  try {
+    // make sure creating user is req.user._id
+    if (String(req.user._id) !== req.body.campaignObj.createdBy) {
+      // console.log(req.user._id, req.body.campaignObj.createdBy)
+      throw new Error("Invalid campaign: Campaign creator did not initiate request");      
+    }
+
+    let returnObj = await Controls.newCampaign(req.body.campaignObj, true);
+
+       
+
+    handleReturnObj(res, EMITTER, returnObj);
+
+  } catch(e) {
+    console.error(e);
+    res.send("Something went wrong, please try again later")
+  }
+})
+
+
+
 // unverified
 router.post('/new_journal', (req, res) => {
   Campaign.findById(req.body.campaign_id, (err, campaign) => {
@@ -123,4 +150,11 @@ router.post('/new_journal', (req, res) => {
   });
 })
 
-module.exports = router;
+
+initRouter = (eEmit) => {
+  EMITTER = eEmit;
+  return router;
+}
+
+module.exports = initRouter;
+// module.exports = router;

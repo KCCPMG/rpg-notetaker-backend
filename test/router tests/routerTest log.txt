@@ -1,52 +1,52 @@
 
-TestUser.txt POST REQUEST http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:14 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/users/newUser Sat May 28 2022 13:26:21 GMT-0700 (Pacific Daylight Time)
 
-TestUser1.txt POST REQUEST http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:14 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST REQUEST http://localhost:3001/users/newUser Sat May 28 2022 13:26:21 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/users/newUser Sat May 28 2022 13:26:21 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-04-10T17:40:14.097Z",
+    "createTime": "2022-05-28T20:26:20.923Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "6253167e72ba57af26cff2cc",
+    "_id": "6292856d488cc875f5656c66",
     "__v": 0
   }
 } 
 cookie: undefined 
 
-TestUser1.txt POST RESPONSE http://localhost:3001/users/newUser Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST RESPONSE http://localhost:3001/users/newUser Sat May 28 2022 13:26:21 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
     "name": "TestUser1",
     "email": "testUser1@aol.com",
     "confirmed": false,
-    "createTime": "2022-04-10T17:40:14.097Z",
+    "createTime": "2022-05-28T20:26:20.923Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
-    "_id": "6253167e72ba57af26cff2cf",
+    "_id": "6292856d488cc875f5656c6a",
     "__v": 0
   }
 } 
 cookie: undefined 
 
-TestUser.txt POST REQUEST http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/users/login Sat May 28 2022 13:26:21 GMT-0700 (Pacific Daylight Time)
 
-TestUser1.txt POST REQUEST http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST REQUEST http://localhost:3001/users/login Sat May 28 2022 13:26:21 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/users/login Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
-    "_id": "6253167e72ba57af26cff2cc",
+    "_id": "6292856d488cc875f5656c66",
     "name": "TestUser",
     "email": "testUser@aol.com",
     "confirmed": false,
-    "createTime": "2022-04-10T17:40:14.097Z",
+    "createTime": "2022-05-28T20:26:20.923Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
@@ -54,16 +54,16 @@ TestUser.txt POST RESPONSE http://localhost:3001/users/login Sun Apr 10 2022 10:
   },
   "auth": true
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyOTI4NTZkNDg4Y2M4NzVmNTY1NmM2NiIsImlhdCI6MTY1Mzc2OTU4Mn0.VjjO9ZLA798Ic1tTY5qoMcyBbXpK5agL9gWD9pSKwn0; Path=/"] 
 
-TestUser1.txt POST RESPONSE http://localhost:3001/users/login Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser1.txt POST RESPONSE http://localhost:3001/users/login Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
 {
   "user": {
-    "_id": "6253167e72ba57af26cff2cf",
+    "_id": "6292856d488cc875f5656c6a",
     "name": "TestUser1",
     "email": "testUser1@aol.com",
     "confirmed": false,
-    "createTime": "2022-04-10T17:40:14.097Z",
+    "createTime": "2022-05-28T20:26:20.923Z",
     "characters": [],
     "campaigns": [],
     "friends": [],
@@ -71,74 +71,36 @@ TestUser1.txt POST RESPONSE http://localhost:3001/users/login Sun Apr 10 2022 10
   },
   "auth": true
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjZiIsImlhdCI6MTY0OTYxMjQxNX0.itkrENWl5i2hQWWBtPvfrvvaM-H54RCZzikHAZbDCDI; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyOTI4NTZkNDg4Y2M4NzVmNTY1NmM2YSIsImlhdCI6MTY1Mzc2OTU4Mn0.5OcA68XXxO7-GJJPnnAuhu_qTXv4GzTehwJq8gWOQGg; Path=/"] 
 
-TestUser EVENT SOURCE Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"You are connected to the event stream","lastEventId":"1649612415607","origin":"http://localhost:3001"}
+TestUser EVENT SOURCE Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1653769582194","origin":"http://localhost:3001"}
 
-TestUser1 EVENT SOURCE Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"You are connected to the event stream","lastEventId":"1649612415621","origin":"http://localhost:3001"}
+TestUser1 EVENT SOURCE Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"You are connected to the event stream","lastEventId":"1653769582206","origin":"http://localhost:3001"}
 
-TestUser.txt POST REQUEST http://localhost:3001/messages/newThread Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST REQUEST http://localhost:3001/campaigns/new Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
 
-TestUser.txt POST RESPONSE http://localhost:3001/messages/newThread Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
+TestUser.txt POST RESPONSE http://localhost:3001/campaigns/new Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
 {
-  "participants": [
-    "6253167e72ba57af26cff2cc",
-    "6253167e72ba57af26cff2cf"
+  "name": "The View From The Lighthouse",
+  "createdBy": "6292856d488cc875f5656c66",
+  "createdOn": "2022-05-28T20:26:20.873Z",
+  "description": "",
+  "dm": [
+    "6292856d488cc875f5656c66"
   ],
-  "chatType": "CHAT",
-  "_id": "6253167f72ba57af26cff2da",
+  "handouts": [],
+  "game": "Mouths of Thayer",
+  "players": [],
+  "invitedPlayers": [],
+  "journalEntries": [],
+  "index": [],
+  "threadId": "6292856e488cc875f5656c75",
+  "_id": "6292856e488cc875f5656c76",
   "__v": 0
 } 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/"] 
+cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyOTI4NTZkNDg4Y2M4NzVmNTY1NmM2NiIsImlhdCI6MTY1Mzc2OTU4Mn0.VjjO9ZLA798Ic1tTY5qoMcyBbXpK5agL9gWD9pSKwn0; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyOTI4NTZkNDg4Y2M4NzVmNTY1NmM2NiIsImlhdCI6MTY1Mzc2OTU4Mn0.VjjO9ZLA798Ic1tTY5qoMcyBbXpK5agL9gWD9pSKwn0; Path=/"] 
 
-TestUser.txt POST REQUEST http://localhost:3001/messages/new Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
-
-TestUser.txt POST RESPONSE http://localhost:3001/messages/new Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
-{
-  "sender": "6253167e72ba57af26cff2cc",
-  "threadIds": [
-    "6253167f72ba57af26cff2da"
-  ],
-  "sendTime": "2022-04-10T17:40:14.092Z",
-  "messageType": "BEFRIEND_REQUEST",
-  "text": "Let's be friends!",
-  "readBy": [
-    "6253167e72ba57af26cff2cc"
-  ],
-  "_id": "6253167f72ba57af26cff2df",
-  "__v": 0
-} 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjYyIsImlhdCI6MTY0OTYxMjQxNX0.sUBXn3qly09ehO8L273uB51rRYDxXBrPBpbYsjJOOHk; Path=/"] 
-
-TestUser1.txt POST REQUEST http://localhost:3001/messages/new Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
-
-TestUser EVENT SOURCE Sun Apr 10 2022 10:40:15 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"{\"messages\":[{\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"_id\":\"6253167f72ba57af26cff2df\",\"__v\":0}]}","lastEventId":"1649612415968, ","origin":"http://localhost:3001"}
-
-TestUser1 EVENT SOURCE Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"{\"messages\":[{\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"_id\":\"6253167f72ba57af26cff2df\",\"__v\":0}]}","lastEventId":"1649612415970, ","origin":"http://localhost:3001"}
-
-TestUser1.txt POST RESPONSE http://localhost:3001/messages/new Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
-{
-  "sender": "6253167e72ba57af26cff2cf",
-  "threadIds": [
-    "6253167f72ba57af26cff2da"
-  ],
-  "sendTime": "2022-04-10T17:40:14.092Z",
-  "messageType": "BEFRIEND_REJECT",
-  "text": "I'll never join you",
-  "readBy": [
-    "6253167e72ba57af26cff2cf"
-  ],
-  "_id": "6253168072ba57af26cff2e6",
-  "__v": 0
-} 
-cookie: ["JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjZiIsImlhdCI6MTY0OTYxMjQxNn0.Ef10S7n2CYhT-lKvESsMZ7_MaA6actw3RvNJ6IQqmYU; Path=/","JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp0cnVlLCJpZCI6IjYyNTMxNjdlNzJiYTU3YWYyNmNmZjJjZiIsImlhdCI6MTY0OTYxMjQxNn0.Ef10S7n2CYhT-lKvESsMZ7_MaA6actw3RvNJ6IQqmYU; Path=/"] 
-
-TestUser EVENT SOURCE Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"{\"messages\":[{\"response\":{\"messageId\":\"6253168072ba57af26cff2e6\",\"messageType\":\"BEFRIEND_REJECT\"},\"_id\":\"6253167f72ba57af26cff2df\",\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"__v\":0},{\"sender\":\"6253167e72ba57af26cff2cf\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REJECT\",\"text\":\"I'll never join you\",\"readBy\":[\"6253167e72ba57af26cff2cf\"],\"_id\":\"6253168072ba57af26cff2e6\",\"__v\":0}]}","lastEventId":"1649612416207, ","origin":"http://localhost:3001"}
-
-TestUser1 EVENT SOURCE Sun Apr 10 2022 10:40:16 GMT-0700 (Pacific Daylight Time)
-{"type":"message","data":"{\"messages\":[{\"response\":{\"messageId\":\"6253168072ba57af26cff2e6\",\"messageType\":\"BEFRIEND_REJECT\"},\"_id\":\"6253167f72ba57af26cff2df\",\"sender\":\"6253167e72ba57af26cff2cc\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REQUEST\",\"text\":\"Let's be friends!\",\"readBy\":[\"6253167e72ba57af26cff2cc\"],\"__v\":0},{\"sender\":\"6253167e72ba57af26cff2cf\",\"threadIds\":[\"6253167f72ba57af26cff2da\"],\"sendTime\":\"2022-04-10T17:40:14.092Z\",\"messageType\":\"BEFRIEND_REJECT\",\"text\":\"I'll never join you\",\"readBy\":[\"6253167e72ba57af26cff2cf\"],\"_id\":\"6253168072ba57af26cff2e6\",\"__v\":0}]}","lastEventId":"1649612416209, ","origin":"http://localhost:3001"}
+TestUser EVENT SOURCE Sat May 28 2022 13:26:22 GMT-0700 (Pacific Daylight Time)
+{"type":"message","data":"{\"thread\":{\"participants\":[\"6292856d488cc875f5656c66\"],\"chatType\":\"CAMPAIGN\",\"name\":\"The View From The Lighthouse\",\"_id\":\"6292856e488cc875f5656c75\",\"campaignId\":\"6292856e488cc875f5656c76\",\"__v\":0},\"campaign\":{\"name\":\"The View From The Lighthouse\",\"createdBy\":\"6292856d488cc875f5656c66\",\"createdOn\":\"2022-05-28T20:26:20.873Z\",\"description\":\"\",\"dm\":[\"6292856d488cc875f5656c66\"],\"handouts\":[],\"game\":\"Mouths of Thayer\",\"players\":[],\"invitedPlayers\":[],\"journalEntries\":[],\"index\":[],\"threadId\":\"6292856e488cc875f5656c75\",\"_id\":\"6292856e488cc875f5656c76\",\"__v\":0},\"user\":{\"name\":\"TestUser\",\"email\":\"testUser@aol.com\",\"password\":null,\"confirmed\":false,\"createTime\":\"2022-05-28T20:26:20.923Z\",\"characters\":[],\"campaigns\":[\"6292856e488cc875f5656c76\"],\"friends\":[],\"_id\":\"6292856d488cc875f5656c66\",\"__v\":1}}","lastEventId":"1653769582366, ","origin":"http://localhost:3001"}

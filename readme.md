@@ -403,7 +403,7 @@ If a Controls function fails to execute due to an error, it will return either a
     * chatTye: CAMPAIGN
     * name: campaignObj.name
   * create newCampaign
-    * name, createdBy, description, dm, game, invitedPlayers, from campaignObj
+    * name, createdBy, description, dm, game, from campaignObj
     * threadId: campaignThread._id
     &nbsp;
   * add campaign id to creator campaigns
@@ -646,7 +646,25 @@ After requests are sent to the various routes, they must do one of two things:
 * Respond by sending the returnObj.response (and streaming the ntfObj if there is one)
 * sending an error
 
+### campaigns.js
 
+### index.js
+
+### messages.js
+
+### stream.js
+
+### test.js
+
+### users.js
+
+### utilities.js
+
+#### handleReturnObj(res, emitter, returnObj)
+  This is a way of standardizing server communication to clients, both through response and SSE. This is usually the last line of code within the try block of a route handler
+
+  * Go through the returnObj.ntfObj and for each user, emit to them what data is stored there for them (see ntfObjAssign in Controls.js)
+  * Send response to requester. 
 
 ## test
 

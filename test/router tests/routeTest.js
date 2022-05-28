@@ -660,11 +660,106 @@ const endFriendshipTest = async () => {
 }
 
 const textMessageTest = async () => {
-  // stub
+  try {
+    let [testuser, testuser1] = await Promise.all([
+      createUserAndLog('testuser', { 
+        name: "TestUser",
+        email: "testUser@aol.com",
+        password: "abcdefg123!@#",
+      }),
+      createUserAndLog('testuser1', {
+        name: "TestUser1",
+        email: "testUser1@aol.com",
+        password: "asdfgh3456#$%",
+      })
+    ]);
+
+    [testuser, testuser1] = await Promise.all([
+      loginUser(testuser),
+      loginUser(testuser1)
+    ]);
+
+    let threadRequest = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/newThread', { 
+      threadObj: {
+        participants: [testuser._id, testuser1._id],
+        chatType: "CHAT"
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    let thread = threadRequest.data;
+
+    let textMessage = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/messages/new', {
+      message: {
+        sender: testuser._id,
+        threadIds: [thread._id],
+        text: "Bert do ya know me?",
+        messageType: Controls.TEXT_ONLY
+      }
+    }, {
+      headers: {
+        Cookie: testuser.token
+      }
+    });
+
+    await eventAwait(5, 4);
+    return textMessage.data;
+
+
+  } catch(e) {
+    throw e;
+  }
 }
 
 const newCampaignTest = async () => {
-  // stub
+  try {
+    let [testuser, testuser1] = await Promise.all([
+      createUserAndLog('testuser', { 
+        name: "TestUser",
+        email: "testUser@aol.com",
+        password: "abcdefg123!@#",
+      }),
+      createUserAndLog('testuser1', {
+        name: "TestUser1",
+        email: "testUser1@aol.com",
+        password: "asdfgh3456#$%",
+      })
+    ]);
+
+    [testuser, testuser1] = await Promise.all([
+      loginUser(testuser),
+      loginUser(testuser1)
+    ]);
+
+    // begin campaign stuff
+    let newCampaign = await postWrapper(`${testuser.name}.txt`, 'http://localhost:3001/campaigns/new', {campaignObj: {
+      name: "The View From The Lighthouse",
+      createdBy: testuser._id,
+      description: "",
+      dm: [testuser._id],
+      game: "Mouths of Thayer",
+      invitedPlayers: [testuser1._id],
+      // threadId should be dynamically created by Controls.newCampaign
+    }}, {
+      headers: {
+        Cookie: testuser.token
+      }
+    })
+
+    // end campaign stuff
+
+    // 5 seconds, 3 events
+    await eventAwait(5, 3);
+    return newCampaign.data;
+
+    // NOTE: this currently allows for invited players, but does not handle an actual campaign invitation. This should either be handled in Controls.js -
+
+  } catch(e) {
+    throw e;
+  }
 }
 
 const campaignInviteTest = async () => {

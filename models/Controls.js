@@ -1355,7 +1355,8 @@ module.exports.newCampaign = async(campaignObj, ntfObjBool) => {
       description: campaignObj.description,
       dm: campaignObj.dm,
       game: campaignObj.game,
-      invitedPlayers: campaignObj.invitedPlayers,
+      // invitedPlayers: campaignObj.invitedPlayers,
+      // this does not handle the actual invitation, commenting out the ability to do this
       threadId: campaignThread._id
     })
 
